@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Concurseiro Conecta — Apresentação do Projeto</title>
+ <style>
+   :root {
+     --bg: #f6f9ff;
+     --primary: #1461f2;
+     --accent: #06b6d4;
+     --text: #0f172a;
+     --muted: #64748b;
+     --radius: 14px;
+     --shadow: 0 6px 20px rgba(19, 24, 27, 0.08);
+     font-family: "Inter", system-ui, sans-serif;
+   }
+   * { box-sizing: border-box; margin: 0; padding: 0; }
+   body {
+     background: linear-gradient(180deg, #f6f9ff 0%, #e8f3ff 100%);
+     color: var(--text);
+     line-height: 1.5;
+     overflow-x: hidden;
+   }
+   header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 22px 8%;
+     background: white;
+     box-shadow: var(--shadow);
+     position: sticky;
+     top: 0;
+     z-index: 50;
+   }
+   header h1 {
+     color: var(--primary);
+     font-weight: 700;
+     font-size: 20px;
+   }
+   header a {
+     background: linear-gradient(90deg, var(--primary), var(--accent));
+     color: white;
+     text-decoration: none;
+     padding: 10px 18px;
+     border-radius: var(--radius);
+     font-weight: 600;
+     box-shadow: 0 3px 10px rgba(20,97,242,0.2);
+     transition: 0.2s;
+   }
+   header a:hover { transform: scale(1.03); }
+
+
+   section {
+     padding: 80px 8%;
+     max-width: 1100px;
+     margin: auto;
+   }
+
+
+   .hero {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-between;
+     gap: 40px;
+   }
+   .hero-text {
+     flex: 1;
+     min-width: 300px;
+   }
+   .hero-text h2 {
+     font-size: 42px;
+     font-weight: 800;
+     background: linear-gradient(90deg, var(--primary), var(--accent));
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     margin-bottom: 16px;
+   }
+   .hero-text p {
+     color: var(--muted);
+     font-size: 18px;
+     max-width: 540px;
+     margin-bottom: 24px;
+   }
+
+
+   .hero-illustration {
+     flex: 1;
+     min-width: 300px;
+     height: 360px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+   }
+   .mock-card {
+     width: 240px;
+     height: 140px;
+     border-radius: var(--radius);
+     background: linear-gradient(145deg, #1461f2 0%, #06b6d4 100%);
+     box-shadow: 0 12px 30px rgba(20, 97, 242, 0.25);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     padding: 20px;
+     color: white;
+     position: absolute;
+     transform: rotate(-5deg);
+     animation: float 5s ease-in-out infinite;
+   }
+   .mock-card.delay {
+     background: linear-gradient(145deg, #0b49d6 0%, #009fb9 100%);
+     transform: rotate(8deg);
+     top: 40px;
+     left: 40px;
+     animation-delay: 2s;
+   }
+   .mock-card .circle {
+     width: 26px;
+     height: 26px;
+     border-radius: 50%;
+     background: white;
+     opacity: 0.8;
+     margin-bottom: 10px;
+   }
+   .mock-card .line {
+     height: 8px;
+     border-radius: 4px;
+     background: rgba(255,255,255,0.8);
+     margin-bottom: 6px;
+   }
+   .mock-card .line.short { width: 70%; }
+   .mock-card .dot {
+     width: 10px;
+     height: 10px;
+     border-radius: 50%;
+     background: white;
+     opacity: 0.7;
+     margin-top: 6px;
+   }
+   @keyframes float {
+     0%, 100% { transform: translateY(0) rotate(-5deg); }
+     50% { transform: translateY(-10px) rotate(-3deg); }
+   }
+
+
+   .features {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+     gap: 24px;
+     margin-top: 40px;
+   }
+   .feature-card {
+     background: white;
+     border-radius: var(--radius);
+     padding: 24px;
+     box-shadow: var(--shadow);
+     transition: 0.25s;
+   }
+   .feature-card:hover { transform: translateY(-4px); }
+   .feature-card h3 {
+     color: var(--primary);
+     margin-bottom: 10px;
+     font-size: 18px;
+   }
+   .feature-card p { color: var(--muted); font-size: 15px; }
+
+
+   .cta {
+     text-align: center;
+     margin-top: 80px;
+   }
+   .cta h2 {
+     font-size: 28px;
+     margin-bottom: 12px;
+     color: var(--primary);
+   }
+   .cta p {
+     color: var(--muted);
+     margin-bottom: 24px;
+     font-size: 16px;
+   }
+   .cta a {
+     background: linear-gradient(90deg, var(--primary), var(--accent));
+     color: white;
+     padding: 14px 26px;
+     border-radius: var(--radius);
+     text-decoration: none;
+     font-weight: 600;
+     box-shadow: 0 4px 14px rgba(20,97,242,0.25);
+     transition: 0.3s;
+   }
+   .cta a:hover { transform: scale(1.05); }
+
+
+   footer {
+     text-align: center;
+     padding: 30px 8%;
+     color: var(--muted);
+     font-size: 14px;
+     background: white;
+     margin-top: 80px;
+   }
+
+
+   @media (max-width: 700px) {
+     .hero-text h2 { font-size: 32px; }
+     .hero-text p { font-size: 16px; }
+     header { padding: 18px 6%; }
+   }
+ </style>
+</head>
+<body>
+
+
+ <header>
+   <h1>Concurseiro Conecta</h1>
+   <a href="teste10.html">Acessar Protótipo</a>
+ </header>
+
+
+ <section class="hero">
+   <div class="hero-text">
+     <h2>Centralize sua jornada até o dia da prova</h2>
+     <p>O <strong>Concurseiro Conecta</strong> é uma plataforma criada para facilitar a vida de quem precisa viajar para fazer concursos. Planeje rotas, encontre hospedagens e conecte-se com outros concurseiros para dividir custos e informações.</p>
+     <a href="teste10.html">Explorar o Protótipo</a>
+   </div>
+
+
+   <div class="hero-illustration">
+     <div class="mock-card">
+       <div class="circle"></div>
+       <div class="line"></div>
+       <div class="line short"></div>
+       <div class="dot"></div>
+     </div>
+     <div class="mock-card delay">
+       <div class="circle"></div>
+       <div class="line"></div>
+       <div class="line short"></div>
+       <div class="dot"></div>
+     </div>
+   </div>
+ </section>
+
+
+ <section>
+   <h2 style="text-align:center;color:var(--primary);margin-bottom:20px;">Principais Recursos</h2>
+   <div class="features">
+     <div class="feature-card">
+       <h3>🎯 Planejamento Inteligente</h3>
+       <p>Cadastre sua prova e receba sugestões de voos, hospedagens e itinerários personalizados.</p>
+     </div>
+     <div class="feature-card">
+       <h3>🤝 Conexões Reais</h3>
+       <p>Encontre outros candidatos indo para o mesmo destino, combine caronas e divida hospedagem.</p>
+     </div>
+     <div class="feature-card">
+       <h3>💬 Comunidade Ativa</h3>
+       <p>Participe do fórum, compartilhe dicas e avaliações de hotéis, voos e locais de prova.</p>
+     </div>
+     <div class="feature-card">
+       <h3>📊 Histórico e Organização</h3>
+       <p>Acompanhe suas provas, resultados e viagens anteriores em um só lugar.</p>
+     </div>
+   </div>
+ </section>
+
+
+ <section class="cta">
+   <h2>Descubra o Concurseiro Conecta</h2>
+   <p>Uma experiência colaborativa para quem vive o mundo dos concursos.</p>
+   <a href="teste10.html">Acessar Protótipo</a>
+ </section>
+
+
+ <footer>
+   Projeto desenvolvido pela equipe <strong>Gabriel, Moacyr e Sarah</strong> • 2025 
+ </footer>
+
+
+</body>
+</html>
+
