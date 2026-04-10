@@ -1,366 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Concurseiro Conecta - Protótipo Mobile</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Concurseiros Conecta</title>
 </head>
 <body>
-	
-	<div class="mobile-frame">
-		
-		<div id="login-page" class="page-content">
-			<div class="page-inner">
-				<h1 class="logo">Conecta.</h1>
-				
-				<h2>Bem-vindo ao Concurseiro Conecta</h2>
-				<p>Centralize sua logística e encontre companhia para suas viagens.</p>
+<div class="phone">
 
-				<div class="card-base">
-					<h3>Faça Login ou Cadastre-se</h3>
+  <!-- Área do login -->
+  <div class="view active" id="view-login">
+    <div class="logo-area">
+      <p class="logo-title">Concurseiros Conecta</p>
+      <p class="logo-sub">Faça login para continuar</p>
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" placeholder="seu@email.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label>Senha</label>
+      <input type="password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <button class="btn-primary">Entrar</button>
+    <hr />
+    <div class="links-row">
+      <button class="btn-link" onclick="showView('view-recover')">Esqueci minha senha</button>
+      <button class="btn-link" onclick="showView('view-register')">Cadastrar-se</button>
+    </div>
+  </div>
 
-					<input type="email" placeholder="Seu Email" class="search-input">
-					<input type="password" placeholder="Senha" class="search-input">
-					
-					<button id="login-button" class="main-btn">
-						<i class="fas fa-sign-in-alt"></i> Entrar
-					</button>
-					
-					<button id="cadastro-button" class="main-btn">
-						<i class="fas fa-user-plus"></i> Cadastrar
-					</button>
+  <!-- Cadastro -->
+  <div class="view" id="view-register">
+    <div class="back-row">
+      <button class="back-btn" onclick="showView('view-login')">&#8592;</button>
+      <div>
+        <p class="section-title">Criar conta</p>
+        <p class="section-sub">Preencha os dados abaixo</p>
+      </div>
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" placeholder="seu@email.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label>CPF</label>
+      <input type="text" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" inputmode="numeric" />
+    </div>
+    <div class="field">
+      <label>Senha</label>
+      <input type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+    </div>
+    <div class="field">
+      <label>Confirmar senha</label>
+      <input type="password" placeholder="Repita a senha" autocomplete="new-password" />
+    </div>
+    <button class="btn-primary">Criar conta</button>
+    <div class="already-row">
+      Já tem conta? <button class="btn-link" onclick="showView('view-login')">Entrar</button>
+    </div>
+  </div>
 
-					<p>Ou continue com:</p>
-					<div>
-						<button><i class="fab fa-google"></i></button>
-						<button><i class="fab fa-facebook-f"></i></button>
-					</div>
-				</div>
-			</div>
-		</div>
+  <!-- Recuperar senha -->
+  <div class="view" id="view-recover">
+    <div class="back-row">
+      <button class="back-btn" onclick="showView('view-login')">&#8592;</button>
+      <div>
+        <p class="section-title">Recuperar senha</p>
+        <p class="section-sub">Informe seus dados cadastrados</p>
+      </div>
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" placeholder="seu@email.com" autocomplete="email" />
+    </div>
+    <div class="field">
+      <label>CPF</label>
+      <input type="text" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" inputmode="numeric" />
+    </div>
+    <button class="btn-primary" onclick="showView('view-recover-success')">Enviar</button>
+  </div>
 
-		<div id="dashboard-page" class="page-content">
-			
-			<header class="app-header">
-				<h1 class="logo">Conecta.</h1>
-				<div class="user-actions">
-					<a href="#" data-target="search-page"><i class="fas fa-search"></i></a>
-					<a href="#" data-target="notifications-page"><i class="fas fa-bell"></i></a>
-					<a href="#" data-target="profile-page" class="profile-avatar">J</a>
-				</div>
-			</header>
+  <!-- Confirmação -->
+  <div class="view" id="view-recover-success">
+    <div class="back-row">
+      <button class="back-btn" onclick="showView('view-login')">&#8592;</button>
+      <div>
+        <p class="section-title">Verifique seu e-mail</p>
+      </div>
+    </div>
+    <div class="success-box">
+      <div class="success-icon">&#9993;</div>
+      <p class="success-title">E-mail enviado!</p>
+      <p class="success-desc">
+        Enviamos um link de recuperação de senha para o endereço de e-mail vinculado à sua conta.<br><br>
+        Verifique também a pasta de spam, caso não encontre na caixa de entrada.
+      </p>
+      <button class="btn-primary" onclick="showView('view-login')">Voltar ao login</button>
+    </div>
+  </div>
 
-			<div class="page-inner">
-				
-				<section class="next-exam-card">
-					<h2>Próxima Missão: INSS (Técnico)</h2>
-					<p>Prova em **Florianópolis, SC** | 15/11/2025</p>
-					<p>47 dias restantes</p>
-					<a href="#" class="main-btn" data-target="trip-planning-page">
-						<i class="fas fa-plane-departure"></i> Organizar Logística
-					</a>
-				</section>
-				
-				<section>
-					<h3>Acesso Rápido</h3>
-					<div class="quick-access-grid">
-						<a href="#" class="access-item" data-target="conecta-page">
-							<i class="fas fa-users"></i>
-							<span>Conectar Pessoas</span>
-							<small>Encontre sua dupla de viagem.</small>
-						</a>
-						<a href="#" class="access-item" data-target="map-page">
-							<i class="fas fa-map-marked-alt"></i>
-							<span>Mapa da Prova</span>
-							<small>Hotéis e Transporte.</small>
-						</a>
-						<a href="#" class="access-item" data-target="community-page">
-							<i class="fas fa-comments"></i>
-							<span>Comunidade</span>
-							<small>Tire dúvidas e compartilhe dicas.</small>
-						</a>
-						<a href="#" class="access-item" data-target="agenda-page">
-							<i class="fas fa-calendar-check"></i>
-							<span>Ver Agenda Completa</span>
-							<small>Prazos e Lembretes.</small>
-						</a>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div id="agenda-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Minha Agenda</h1>
-				<a href="#" data-target="add-concurso-page"><i class="fas fa-plus-circle"></i></a>
-			</header>
-			
-			<div class="page-inner">
-				<h3>Concursos Ativos (2)</h3>
-				
-				<section class="card-base">
-					<div class="list-item">
-						<h4>INSS (Técnico)</h4>
-						<p>Prova: 15/11/2025 | Local: Florianópolis, SC</p>
-					</div>
-					<div class="list-item">
-						<h4>BACEN (Analista)</h4>
-						<p>Inscrição até: 20/01/2026 | Local: Brasília, DF</p>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div id="trip-planning-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Logística: INSS (FLN)</h1>
-			</header>
-			
-			<div class="page-inner">
-				
-				<h3>Passagens Aéreas/Terrestres</h3>
-				<section class="card-base">
-					<div>
-						<span>Status:</span>
-						<span><i class="fas fa-check-circle"></i> Comprada</span>
-					</div>
-					<p>Voo G3 1234 | 14/11 | 18:00h</p>
-					<a href="#" class="main-btn">
-						<i class="fas fa-edit"></i> Ver Detalhes / Alterar
-					</a>
-				</section>
-				
-				<h3>Hospedagem</h3>
-				<section class="card-base">
-					<div>
-						<span>Status:</span>
-						<span><i class="fas fa-exclamation-triangle"></i> Pendente</span>
-					</div>
-					<p>Ainda não há reserva para 14-16/11.</p>
-					<a href="#" class="main-btn" data-target="map-page">
-						<i class="fas fa-hotel"></i> Sugestões de Hotéis Próximos
-					</a>
-				</section>
-
-				<h3>Conexões de Viagem</h3>
-				<section class="card-base">
-					<div>
-						<span>Encontrar Carona para o Aeroporto?</span>
-						<a href="#" class="main-btn" data-target="conecta-page">Buscar</a>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div id="conecta-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Conecta</h1>
-			</header>
-			
-			<div class="page-inner">
-				<div>
-					<span>Concurseiros: INSS (Florianópolis)</span>
-				</div>
-				
-				<h3>12 Pessoas com Logística Compatível</h3>
-				
-				<section class="card-base">
-					<div class="list-item">
-						<div>
-							<h4>Carolina S. (28)</h4>
-							<p>Origem: Curitiba, PR | Match: **Mesmo Voo**</p>
-						</div>
-						<a href="#" class="main-btn">Chat</a>
-					</div>
-					<div class="list-item">
-						<div>
-							<h4>Marcos R. (35)</h4>
-							<p>Origem: São Paulo, SP | Match: **Local de Prova Próximo**</p>
-						</div>
-						<a href="#" class="main-btn">Chat</a>
-					</div>
-					<div class="list-item">
-						<div>
-							<h4>Larissa F. (22)</h4>
-							<p>Origem: Belo Horizonte, MG | Match: **Mesmo Hotel**</p>
-						</div>
-						<a href="#" class="main-btn">Chat</a>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div id="map-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Mapa: Local de Prova</h1>
-			</header>
-			
-			<div class="page-inner">
-				<section class="card-base">
-					<p>[Mapa Interativo com Pins]<br>Local de Prova | Hotéis Sugeridos | Pontos de Ônibus</p>
-				</section>
-				
-				<section class="card-base">
-					<h3><i class="fas fa-info-circle"></i> Dicas de Logística</h3>
-					<ul>
-						<li>- O trânsito na região costuma ser intenso aos domingos.</li>
-						<li>- Há um ônibus circular gratuito perto do hotel sugerido.</li>
-					</ul>
-				</section>
-			</div>
-		</div>
-		
-		<div id="community-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Comunidade</h1>
-				<a href="#"><i class="fas fa-feather-alt"></i></a>
-			</header>
-			
-			<div class="page-inner">
-				<div class="input-group">
-					<input type="text" placeholder="Buscar em tópicos e dicas..." class="search-input">
-					<i class="fas fa-search"></i>
-				</div>
-				
-				<section class="card-base">
-					<div class="list-item">
-						<h4>Técnicas de Estudo: O que fazer na véspera?</h4>
-						<p>@professor_leo | 12 Comentários | <i class="fas fa-thumbs-up"></i> 54</p>
-					</div>
-					<div class="list-item">
-						<h4>Dúvida sobre o edital do BACEN: cota de negros.</h4>
-						<p>@user_anonimo | 3 Comentários | <i class="fas fa-thumbs-up"></i> 12</p>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div id="profile-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Meu Perfil</h1>
-				<a href="#" data-target="settings-page"><i class="fas fa-cog"></i></a>
-			</header>
-			
-			<div class="page-inner">
-				<section>
-					<div class="profile-avatar">J</div>
-					<h3>João Silva</h3>
-					<p>De: Porto Alegre, RS</p>
-				</section>
-
-				<h3>Histórico de Concursos (3)</h3>
-				<section class="card-base">
-					<div class="list-item"><span>INSS (2025) - Planejando</span></div>
-					<div class="list-item"><span>Receita Federal (2024) - Realizado</span></div>
-					<div class="list-item"><span>PRF (2022) - Concluído</span></div>
-				</section>
-			</div>
-		</div>
-
-		<div id="settings-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Ajustes</h1>
-			</header>
-			
-			<div class="page-inner">
-				<h3>Conta e Segurança</h3>
-				<section class="card-base">
-					<a href="#" class="list-item">
-						<span>Segurança (2 Fatores)</span>
-						<i class="fas fa-angle-right"></i>
-					</a>
-					<a href="#" class="list-item">
-						<span>Preferências de Viagem</span>
-						<i class="fas fa-angle-right"></i>
-					</a>
-					<div class="list-item">
-						<span>Sair da Conta</span>
-						<i class="fas fa-sign-out-alt"></i>
-					</div>
-				</section>
-				
-				<h3>Notificações</h3>
-				<section class="card-base">
-					<div class="list-item">
-						<span>Alertas de Logística (Voos, Hotéis)</span>
-						<input type="checkbox" checked>
-					</div>
-					<div class="list-item">
-						<span>Alertas de Match (Conecta)</span>
-						<input type="checkbox">
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<div id="search-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Buscar</h1>
-			</header>
-			<div class="page-inner">
-				<div class="input-group">
-					<input type="text" placeholder="Concursos, Pessoas, Dicas..." class="search-input">
-					<i class="fas fa-search"></i>
-				</div>
-			</div>
-		</div>
-		
-		<div id="notifications-page" class="page-content">
-			<header class="page-header">
-				<a href="#" class="back-btn" data-target="dashboard-page"><i class="fas fa-arrow-left"></i></a>
-				<h1>Notificações</h1>
-			</header>
-			<div class="page-inner">
-				<section class="card-base">
-					<div class="list-item">
-						<div>
-							<h4>**NOVO MATCH!** Carolina aceitou seu convite.</h4>
-							<p>Clique para iniciar o chat.</p>
-						</div>
-						<i class="fas fa-user-friends"></i>
-					</div>
-					<div class="list-item">
-						<div>
-							<h4>ALERTA DE PRAZO:</h4>
-							<p>Pagamento da taxa do BACEN vence em 3 dias!</p>
-						</div>
-						<i class="fas fa-calendar-times"></i>
-					</div>
-				</section>
-			</div>
-		</div>
-
-		<nav class="bottom-navbar">
-			<a href="#" class="nav-item" data-target="dashboard-page">
-				<i class="fas fa-home"></i>
-				<span>Home</span>
-			</a>
-			<a href="#" class="nav-item" data-target="agenda-page">
-				<i class="fas fa-calendar-alt"></i>
-				<span>Agenda</span>
-			</a>
-			<a href="#" class="nav-item" data-target="trip-planning-page">
-				<i class="fas fa-plane-departure"></i>
-				<span>Viagem</span>
-			</a>
-			<a href="#" class="nav-item" data-target="conecta-page">
-				<i class="fas fa-users"></i>
-				<span>Conecta</span>
-			</a>
-			<a href="#" class="nav-item" data-target="profile-page">
-				<i class="fas fa-user-circle"></i>
-				<span>Perfil</span>
-			</a>
-		</nav>
-		
-	</div>
+</div>
 </body>
 </html>
