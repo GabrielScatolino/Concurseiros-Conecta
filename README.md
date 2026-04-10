@@ -1,11 +1,11 @@
 📌 Nome do Projeto: Concurseiro Conecta
 
 👥 Integrantes:
-Fernando Tolentino de Souza Hessmann Dutra
-Gabriel de Rezende Silva Scatolino
-Henrique Pereira Rodrigues Nunes
-Moacyr Mendes de Oliveira Neto
-Sarah Martins Ambrosi Simon
+Fernando Tolentino de Souza Hessmann Dutra, 
+Gabriel de Rezende Silva Scatolino, 
+Henrique Pereira Rodrigues Nunes, 
+Moacyr Mendes de Oliveira Neto e
+Sarah Martins Ambrosi Simon.
 
 📖 Sobre o projeto:
 O Concurseiro Conecta é um protótipo de aplicativo criado para ajudar concurseiros que precisam viajar para realizar provas em outras cidades.
