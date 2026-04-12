@@ -1,0 +1,82 @@
+#view-register > div:first-child,
+#view-recover > div:first-child,
+#view-recover-success > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+#view-register button,
+#view-recover button,
+#view-recover-success button {
+  width: auto;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--muted);
+}
+
+#view-recover-success {
+  text-align: center;
+}
+
+#view-recover-success div:last-child {
+  margin-top: 20px;
+}
+
+#view-recover-success div:first-of-type {
+  font-size: 70px;
+  margin-bottom: 16px;
+}
+
+#view-recover-success p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  section > div {
+    padding: 32px 20px;
+  }
+  body {
+    padding: 15px;
+  }
+}
+
+section:first-of-type > section:first-of-type {
+  display: block;
+}
+
+#view-register,
+#view-recover,
+#view-recover-success {
+  display: none;
+}
+
+input:focus,
+button:focus {
+  outline: 3px solid rgba(254, 127, 45, 0.4);
+  outline-offset: 3px;
+}
+
+section > div:last-child {
+  margin-top: -40px !important;     
+  display: flex;
+  flex-direction: column;
+  gap: 5px;                       
+  align-items: center;             
+  padding: 10 0px;                 
+}
+
+section > div:last-child button {
+  width: 100%;
+  max-width: 300px;                
+  padding: 14px 20px;
+  border-radius: 12px;
+}
+
+hr {
+  margin: 0px 0 px 0;
+}
