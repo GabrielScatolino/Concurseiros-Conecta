@@ -1,105 +1,114 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Concurseiros Conecta</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concurseiros Conecta</title>
 </head>
+
 <body>
-<div class="phone">
+  <section>
 
-  <!-- Área do login -->
-  <div class="view active" id="view-login">
-    <div class="logo-area">
-      <p class="logo-title">Concurseiros Conecta</p>
-      <p class="logo-sub">Faça login para continuar</p>
-    </div>
-    <div class="field">
-      <label>E-mail</label>
-      <input type="email" placeholder="seu@email.com" autocomplete="email" />
-    </div>
-    <div class="field">
-      <label>Senha</label>
-      <input type="password" placeholder="••••••••" autocomplete="current-password" />
-    </div>
-    <button class="btn-primary">Entrar</button>
-    <hr />
-    <div class="links-row">
-      <button class="btn-link" onclick="showView('view-recover')">Esqueci minha senha</button>
-      <button class="btn-link" onclick="showView('view-register')">Cadastrar-se</button>
-    </div>
-  </div>
+    <!-- Área do login -->
+    <section>
 
-  <!-- Cadastro -->
-  <div class="view" id="view-register">
-    <div class="back-row">
-      <button class="back-btn" onclick="showView('view-login')">&#8592;</button>
       <div>
-        <p class="section-title">Criar conta</p>
-        <p class="section-sub">Preencha os dados abaixo</p>
+        <p>Concurseiros Conecta</p>
+        <p>Faça login para continuar</p>
       </div>
-    </div>
-    <div class="field">
-      <label>E-mail</label>
-      <input type="email" placeholder="seu@email.com" autocomplete="email" />
-    </div>
-    <div class="field">
-      <label>CPF</label>
-      <input type="text" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" inputmode="numeric" />
-    </div>
-    <div class="field">
-      <label>Senha</label>
-      <input type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
-    </div>
-    <div class="field">
-      <label>Confirmar senha</label>
-      <input type="password" placeholder="Repita a senha" autocomplete="new-password" />
-    </div>
-    <button class="btn-primary">Criar conta</button>
-    <div class="already-row">
-      Já tem conta? <button class="btn-link" onclick="showView('view-login')">Entrar</button>
-    </div>
-  </div>
-
-  <!-- Recuperar senha -->
-  <div class="view" id="view-recover">
-    <div class="back-row">
-      <button class="back-btn" onclick="showView('view-login')">&#8592;</button>
       <div>
-        <p class="section-title">Recuperar senha</p>
-        <p class="section-sub">Informe seus dados cadastrados</p>
+        <label>E-mail</label>
+        <input type="email" placeholder="seu@email.com" autocomplete="email" />
       </div>
-    </div>
-    <div class="field">
-      <label>E-mail</label>
-      <input type="email" placeholder="seu@email.com" autocomplete="email" />
-    </div>
-    <div class="field">
-      <label>CPF</label>
-      <input type="text" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" inputmode="numeric" />
-    </div>
-    <button class="btn-primary" onclick="showView('view-recover-success')">Enviar</button>
-  </div>
-
-  <!-- Confirmação -->
-  <div class="view" id="view-recover-success">
-    <div class="back-row">
-      <button class="back-btn" onclick="showView('view-login')">&#8592;</button>
       <div>
-        <p class="section-title">Verifique seu e-mail</p>
+        <label>Senha</label>
+        <input type="password" placeholder="••••••••" autocomplete="current-password" />
       </div>
-    </div>
-    <div class="success-box">
-      <div class="success-icon">&#9993;</div>
-      <p class="success-title">E-mail enviado!</p>
-      <p class="success-desc">
-        Enviamos um link de recuperação de senha para o endereço de e-mail vinculado à sua conta.<br><br>
-        Verifique também a pasta de spam, caso não encontre na caixa de entrada.
-      </p>
-      <button class="btn-primary" onclick="showView('view-login')">Voltar ao login</button>
-    </div>
-  </div>
+      <button>Entrar</button>
+      <hr />
+      <div>
+        <button onclick="showView('view-recover')">Esqueci minha senha</button>
+        <button onclick="showView('view-register')">Cadastrar-se</button>
+      </div>
 
-</div>
+    </section>
+
+    <!-- Cadastro -->
+    <section>
+      <div id="view-register">
+        <div>
+          <button onclick="showView('view-login')">&#8592;</button>
+          <div>
+            <p>Criar conta</p>
+            <p>Preencha os dados abaixo</p>
+          </div>
+        </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" placeholder="seu@email.com" autocomplete="email" />
+        </div>
+        <div>
+          <label>CPF</label>
+          <input type="text" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" inputmode="numeric" />
+        </div>
+        <div>
+          <label>Senha</label>
+          <input type="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+        </div>
+        <div>
+          <label>Confirmar senha</label>
+          <input type="password" placeholder="Repita a senha" autocomplete="new-password" />
+        </div>
+        <button>Criar conta</button>
+        <div>
+          Já tem conta? <button onclick="showView('view-login')">Entrar</button>
+        </div>
+      </div>
+    </section>
+    <!-- Recuperar senha -->
+    <section>
+      <div id="view-recover">
+        <div>
+          <button onclick="showView('view-login')">&#8592;</button>
+          <div>
+            <p>Recuperar senha</p>
+            <p>Informe seus dados cadastrados</p>
+          </div>
+        </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" placeholder="seu@email.com" autocomplete="email" />
+        </div>
+        <div>
+          <label>CPF</label>
+          <input type="text" placeholder="000.000.000-00" maxlength="14" oninput="maskCPF(this)" inputmode="numeric" />
+        </div>
+        <button onclick="showView('view-recover-success')">Enviar</button>
+      </div>
+    </section>
+
+    <!-- Confirmação -->
+    <section>
+      <div id="view-recover-success">
+        <div>
+          <button onclick="showView('view-login')">&#8592;</button>
+          <div>
+            <p>Verifique seu e-mail</p>
+          </div>
+        </div>
+        <div>
+          <div>&#9993;</div>
+          <p>E-mail enviado!</p>
+          <p>
+            Enviamos um link de recuperação de senha para o endereço de e-mail vinculado à sua conta.<br><br>
+            Verifique também a pasta de spam, caso não encontre na caixa de entrada.
+          </p>
+          <button onclick="showView('view-login')">Voltar ao login</button>
+        </div>
+      </div>
+    </section>
+    </div>
 </body>
+
 </html>
