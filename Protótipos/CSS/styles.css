@@ -1,0 +1,116 @@
+:root {
+  --bg: #F5FBE6;
+  --card: #ffffff;
+  --muted: #233D4D;
+  --primary: #215E61;
+  --accent: #FE7F2D;
+  --radius: 20px;
+  --shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  color: var(--muted);
+}
+section:first-of-type {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+}
+section > div {
+  padding: 40px 32px;
+}
+section > div > p:first-child {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 8px;
+}
+section > div > p:nth-child(2) {
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e6f0eb;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: border 0.2s;
+}
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(33, 94, 97, 0.15);
+}
+button {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s;
+}
+button:hover {
+  background: #1a4a4c;
+  transform: translateY(-2px);
+}
+button[onclick*="showView"] {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  font-weight: 500;
+}
+hr {
+  border: none;
+  height: 1px;
+  background: #e6f0eb;
+  margin: 24px 0;
+}
+
+/* ── Separação entre telas (Sprint 1) ── */
+body > section:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  max-width: 420px;
+  width: 100%;
+}
+
+body > section:first-child > section {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
