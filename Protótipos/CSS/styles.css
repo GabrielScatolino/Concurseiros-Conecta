@@ -114,3 +114,914 @@ body > section:first-child > section {
   box-shadow: var(--shadow);
   overflow: hidden;
 }
+
+/* =============================================
+    PÁGINA DE BUSCA
+   ============================================= */
+
+:root {
+  --bg: #F5FBE6;
+  --card: #ffffff;
+  --muted: #233D4D;
+  --primary: #215E61;
+  --accent: #FE7F2D;
+  --radius: 20px;
+  --shadow: 0 10px 30px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh;
+  color: var(--muted);
+  padding-bottom: 80px; /* espaço para o bottom-nav */
+}
+
+/* Container principal da página de busca */
+.busca-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header-busca {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.header-busca h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.header-busca p {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* Área de pesquisa */
+.area-pesquisa {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+}
+
+.area-pesquisa form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.area-pesquisa label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.area-pesquisa input[type="search"] {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e6f0eb;
+  border-radius: 16px;
+  font-size: 17px;
+  transition: all 0.2s;
+}
+
+.area-pesquisa input[type="search"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(33, 94, 97, 0.15);
+}
+
+.area-pesquisa button {
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.area-pesquisa button:hover {
+  background: #1a4a4c;
+  transform: translateY(-2px);
+}
+
+/* Sugestões / Buscas Recentes */
+.resultados-sugestoes {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  box-shadow: var(--shadow);
+}
+
+.resultados-sugestoes h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.resultados-sugestoes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resultados-sugestoes li a {
+  display: block;
+  padding: 14px 18px;
+  background: #f8fbf6;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.resultados-sugestoes li a:hover {
+  background: #eef4eb;
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  border-radius: 9999px;
+  box-shadow: var(--shadow);
+  padding: 8px 12px;
+  width: min(92%, 420px);
+  z-index: 1000;
+}
+
+.bottom-nav .nav-lista {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  gap: 8px;
+}
+
+.bottom-nav button,
+.bottom-nav a button {
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.bottom-nav button:hover,
+.bottom-nav a button:hover {
+  background: #eef4eb;
+  color: var(--primary);
+}
+
+/* Botão ativo (Buscar) */
+.bottom-nav li:nth-child(3) button {
+  background: var(--primary);
+  color: white;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .busca-container {
+    padding: 16px;
+  }
+  
+  .area-pesquisa,
+  .resultados-sugestoes {
+    padding: 24px 20px;
+  }
+  
+  .header-busca h1 {
+    font-size: 28px;
+  }
+}
+
+/* =============================================
+   PÁGINA DE CADASTRO 
+   ============================================= */
+
+:root {
+  --bg: #F5FBE6;
+  --card: #ffffff;
+  --muted: #233D4D;
+  --primary: #215E61;
+  --accent: #FE7F2D;
+  --radius: 20px;
+  --shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: var(--muted);
+}
+
+/* Card principal */
+#tela_cadastro {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+#tela_cadastro > div {
+  padding: 32px 28px;
+}
+
+/* ==================== CABEÇALHO COM SETA ==================== */
+#tela_cadastro > div > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+/* Seta de voltar*/
+#tela_cadastro button:first-child {
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+#tela_cadastro button:first-child:hover {
+  background: #f0f4f0;
+}
+
+/* Título "Criar conta" */
+#tela_cadastro p:first-child {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* Subtítulo "Preencha os dados abaixo" */
+#tela_cadastro p:nth-child(2) {
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ==================== CAMPOS ==================== */
+#tela_cadastro label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+#tela_cadastro input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e6f0eb;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: all 0.2s;
+}
+
+#tela_cadastro input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(33, 94, 97, 0.15);
+}
+
+/* ==================== BOTÃO "CRIAR CONTA"==================== */
+#tela_cadastro > div > a > button {
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 9999px;        /* formato pill arredondado */
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.2s;
+}
+
+#tela_cadastro > div > a > button:hover {
+  background: #1a4a4c;
+  transform: translateY(-2px);
+}
+
+/* Remove underline do link */
+#tela_cadastro > div > a {
+  text-decoration: none;
+  display: block;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  #tela_cadastro > div {
+    padding: 28px 20px;
+  }
+}
+
+/* Acessibilidade */
+input:focus,
+button:focus {
+  outline: 3px solid rgba(254, 127, 45, 0.4);
+  outline-offset: 3px;
+}
+
+/* =============================================
+   PÁGINA DE CONEXÕES
+   ============================================= */
+
+:root {
+  --bg: #F5FBE6;
+  --card: #ffffff;
+  --muted: #233D4D;
+  --primary: #215E61;
+  --accent: #FE7F2D;
+  --radius: 20px;
+  --shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh;
+  color: var(--muted);
+  padding-bottom: 90px; /* espaço para o bottom-nav */
+}
+
+/* Container principal da tela de conexões */
+#tela_conexoes {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+#tela_conexoes > div:first-child {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+#tela_conexoes h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+#tela_conexoes > div:first-child p {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* Botões principais (Ver pessoas no mesmo concurso / Ver quem está por perto) */
+#tela_conexoes > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+#tela_conexoes > div:nth-child(2) button {
+  width: 100%;
+  padding: 18px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#tela_conexoes > div:nth-child(2) button:hover {
+  background: #1a4a4c;
+  transform: translateY(-2px);
+}
+
+/* Seções de Chats e Fóruns */
+#tela_conexoes > div:nth-child(3),
+#tela_conexoes > div:nth-child(4) {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+#tela_conexoes h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 18px;
+}
+
+/* Itens de Chat */
+#tela_conexoes > div:nth-child(3) > div {
+  padding: 14px 0;
+  border-bottom: 1px solid #e6f0eb;
+}
+
+#tela_conexoes > div:nth-child(3) > div:last-child {
+  border-bottom: none;
+}
+
+#tela_conexoes > div:nth-child(3) strong {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* Itens de Fórum */
+#tela_conexoes > div:nth-child(4) > div {
+  margin-bottom: 24px;
+}
+
+#tela_conexoes > div:nth-child(4) > div:last-child {
+  margin-bottom: 0;
+}
+
+#tela_conexoes > div:nth-child(4) strong {
+  font-size: 16px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+#tela_conexoes > div:nth-child(4) button {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 9999px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+
+#tela_conexoes > div:nth-child(4) button:hover {
+  background: rgba(254, 127, 45, 0.08);
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  border-radius: 9999px;
+  box-shadow: var(--shadow);
+  padding: 8px 12px;
+  width: min(92%, 420px);
+  z-index: 1000;
+}
+
+.bottom-nav .nav-lista {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  gap: 8px;
+}
+
+.bottom-nav button,
+.bottom-nav a button {
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.bottom-nav button:hover,
+.bottom-nav a button:hover {
+  background: #eef4eb;
+  color: var(--primary);
+}
+
+/* Botão ativo (Conexões) */
+.bottom-nav li:nth-child(2) button {
+  background: var(--primary);
+  color: white;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  #tela_conexoes {
+    padding: 16px;
+  }
+  
+  #tela_conexoes > div:nth-child(3),
+  #tela_conexoes > div:nth-child(4) {
+    padding: 24px 20px;
+  }
+}
+
+/* =============================================
+   PÁGINA DE CONFIGURAÇÕES / PERFIL
+   ============================================= */
+
+:root {
+  --bg: #F5FBE6;
+  --card: #ffffff;
+  --muted: #233D4D;
+  --primary: #215E61;
+  --accent: #FE7F2D;
+  --radius: 20px;
+  --shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh;
+  color: var(--muted);
+  padding-bottom: 90px;
+}
+
+/* Container principal */
+.config-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ==================== HEADER - PERFIL ==================== */
+.header-PERFIL {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.avatar-circulo {
+  width: 110px;
+  height: 110px;
+  background: linear-gradient(135deg, #c7e7ff, #dfeeff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #034;
+  box-shadow: 0 4px 12px rgba(33, 94, 97, 0.15);
+  border: 4px solid white;
+}
+
+.editar-btn {
+  padding: 8px 20px;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editar-btn:hover {
+  background: rgba(254, 127, 45, 0.08);
+}
+
+.info-usuario h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.info-usuario p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.editar-perfil {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editar-perfil:hover {
+  background: #1a4a4c;
+  transform: translateY(-2px);
+}
+
+/* ==================== CARDS DE CONFIGURAÇÃO ==================== */
+.card-config {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.card-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.lista-config {
+  list-style: none;
+}
+
+.item-config {
+  border-bottom: 1px solid #e6f0eb;
+}
+
+.item-config:last-child {
+  border-bottom: none;
+}
+
+.item-config a,
+.logout-btn {
+  display: block;
+  padding: 16px 8px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.item-config a:hover {
+  background: #f0f4f0;
+  border-radius: 12px;
+  color: var(--primary);
+}
+
+/* Botão Sair */
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.logout-btn:hover {
+  background: #d93c3c;
+  transform: translateY(-2px);
+}
+
+/* ==================== BOTTOM NAV ==================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card);
+  border-radius: 9999px;
+  box-shadow: var(--shadow);
+  padding: 8px 12px;
+  width: min(92%, 420px);
+  z-index: 1000;
+}
+
+.bottom-nav .nav-lista {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  gap: 8px;
+}
+
+.bottom-nav button,
+.bottom-nav a button {
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.bottom-nav button:hover,
+.bottom-nav a button:hover {
+  background: #eef4eb;
+  color: var(--primary);
+}
+
+/* Botão ativo (Configurações) */
+.bottom-nav li:nth-child(4) button {
+  background: var(--primary);
+  color: white;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .config-container {
+    padding: 16px;
+  }
+  
+  .header-PERFIL,
+  .card-config {
+    padding: 24px 20px;
+  }
+}
+
+/* =============================================
+   PÁGINA DE CONFIRMAÇÃO
+   ============================================= */
+
+:root {
+  --bg: #F5FBE6;
+  --card: #ffffff;
+  --muted: #233D4D;
+  --primary: #215E61;
+  --accent: #FE7F2D;
+  --radius: 20px;
+  --shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: var(--muted);
+}
+
+/* Container principal da tela de confirmação */
+#tela_confirmacao {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+/* Título principal */
+#tela_confirmacao > div > div:first-child p {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 32px;
+}
+
+/* Ícone do envelope */
+#tela_confirmacao > div > div:last-child > div:first-child {
+  font-size: 80px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Texto "E-mail enviado!" */
+#tela_confirmacao > div > div:last-child p:first-of-type {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+/* Texto explicativo */
+#tela_confirmacao > div > div:last-child p:last-of-type {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+/* Botão "Voltar ao login" - no mesmo estilo pill dos outros botões */
+#tela_confirmacao > div > div:last-child > a > button {
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#tela_confirmacao > div > div:last-child > a > button:hover {
+  background: #1a4a4c;
+  transform: translateY(-2px);
+}
+
+/* Remove underline do link */
+#tela_confirmacao > div > div:last-child > a {
+  text-decoration: none;
+  display: block;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  #tela_confirmacao {
+    padding: 32px 20px;
+  }
+  
+  #tela_confirmacao > div > div:first-child p {
+    font-size: 24px;
+  }
+}
+
+/* Acessibilidade */
+button:focus {
+  outline: 3px solid rgba(254, 127, 45, 0.4);
+  outline-offset: 3px;
+}
