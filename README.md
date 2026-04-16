@@ -8,8 +8,7 @@ Moacyr Mendes de Oliveira Neto e
 Sarah Martins Ambrosi Simon.
 
 📖 Sobre o projeto:
-O Concurseiro Conecta é um protótipo de aplicativo criado para ajudar concurseiros que precisam viajar para realizar provas em outras cidades.
-A proposta é centralizar a organização da viagem, reduzir custos e conectar pessoas que estão participando do mesmo concurso.
+O Concurseiro Conecta é um protótipo de aplicativo criado para ajudar concurseiros que precisam viajar para realizar provas em outras cidades. A proposta é centralizar a organização da viagem, reduzir custos e conectar pessoas que estão participando do mesmo concurso.
 
 🚀 Funcionalidades:
 - Planejamento de viagens para concursos
