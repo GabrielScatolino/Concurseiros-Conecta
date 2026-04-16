@@ -1025,3 +1025,649 @@ button:focus {
   outline: 3px solid rgba(254, 127, 45, 0.4);
   outline-offset: 3px;
 }
+/* =============================================
+PÁGINA HOME 
+============================================= */
+
+:root {
+--bg: #F5FBE6;
+--card: #ffffff;
+--muted: #233D4D;
+--primary: #215E61;
+--accent: #FE7F2D;
+--radius: 20px;
+--shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+min-height: 100vh;
+color: var(--muted);
+padding-bottom: 90px; /* espaço pro menu */
+}
+
+/* Container principal */
+#tela_home {
+max-width: 640px;
+margin: 0 auto;
+padding: 20px;
+}
+
+/* Header */
+#tela_home > div:first-child {
+margin-bottom: 24px;
+}
+
+#tela_home h1:first-child {
+font-size: 28px;
+font-weight: 700;
+color: var(--primary);
+}
+
+#tela_home h1:last-child {
+font-size: 18px;
+font-weight: 600;
+color: var(--muted);
+}
+
+/* Seção da viagem */
+#tela_home > div:nth-of-type(2) {
+margin-bottom: 32px;
+}
+
+#tela_home > div:nth-of-type(2) > p {
+font-size: 16px;
+font-weight: 600;
+margin-bottom: 12px;
+}
+
+/* Card da viagem */
+#tela_home > div:nth-of-type(2) > div {
+background: var(--card);
+border-radius: var(--radius);
+padding: 24px 20px;
+box-shadow: var(--shadow);
+}
+
+/* Textos da viagem */
+#tela_home > div:nth-of-type(2) > div p {
+font-size: 14px;
+margin-bottom: 8px;
+}
+
+/* Botão principal */
+#tela_home > div:nth-of-type(3) {
+margin-bottom: 32px;
+}
+
+#tela_home > div:nth-of-type(3) button {
+width: 100%;
+padding: 18px 24px;
+background: var(--primary);
+color: white;
+border: none;
+border-radius: 9999px;
+font-size: 17px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+#tela_home > div:nth-of-type(3) button:hover {
+background: #1a4a4c;
+transform: translateY(-2px);
+}
+
+/* Bottom Navigation (igual conexões) */
+.bottom-nav {
+position: fixed;
+bottom: 16px;
+left: 50%;
+transform: translateX(-50%);
+background: var(--card);
+border-radius: 9999px;
+box-shadow: var(--shadow);
+padding: 8px 12px;
+width: min(92%, 420px);
+z-index: 1000;
+}
+
+.bottom-nav .nav-lista {
+display: flex;
+justify-content: space-around;
+list-style: none;
+gap: 8px;
+}
+
+.bottom-nav button,
+.bottom-nav a button {
+background: transparent;
+border: none;
+padding: 12px 16px; /* leve ajuste pra caber melhor */
+border-radius: 9999px;
+font-size: 14px;
+font-weight: 600;
+color: var(--muted);
+cursor: pointer;
+transition: all 0.2s;
+white-space: nowrap;
+}
+
+.bottom-nav button:hover,
+.bottom-nav a button:hover {
+background: #eef4eb;
+color: var(--primary);
+}
+
+/* Botão ativo (Home agora) */
+.bottom-nav li:nth-child(1) button {
+background: var(--primary);
+color: white;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+#tela_home {
+padding: 16px;
+}
+
+#tela_home > div:nth-of-type(2) > div {
+padding: 20px 16px;
+}
+}
+
+/* Acessibilidade */
+button:focus {
+outline: 3px solid rgba(254, 127, 45, 0.4);
+outline-offset: 3px;
+}
+
+/* =============================================
+PÁGINA DE LOGIN
+============================================= */
+
+:root {
+--bg: #F5FBE6;
+--card: #ffffff;
+--muted: #233D4D;
+--primary: #215E61;
+--accent: #FE7F2D;
+--radius: 20px;
+--shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+min-height: 100vh;
+color: var(--muted);
+
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+/* Container principal */
+#tela_login {
+width: 100%;
+max-width: 420px;
+background: var(--card);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+padding: 36px 28px;
+
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+
+/* Header */
+#tela_login > div:first-child {
+text-align: center;
+margin-bottom: 10px;
+}
+
+#tela_login > div:first-child p:first-child {
+font-size: 24px;
+font-weight: 700;
+color: var(--primary);
+}
+
+#tela_login > div:first-child p:last-child {
+font-size: 14px;
+color: var(--muted);
+}
+
+/* Labels */
+#tela_login label {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 4px;
+display: block;
+}
+
+/* Inputs */
+#tela_login input {
+width: 100%;
+padding: 14px 16px;
+border-radius: 12px;
+border: 1px solid #dbe7df;
+font-size: 14px;
+outline: none;
+transition: all 0.2s;
+}
+
+#tela_login input:focus {
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(33, 94, 97, 0.1);
+}
+
+/* Botão principal */
+#tela_login > a > button {
+width: 100%;
+padding: 16px;
+background: var(--primary);
+color: white;
+border: none;
+border-radius: 9999px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+#tela_login > a > button:hover {
+background: #1a4a4c;
+transform: translateY(-2px);
+}
+
+/* Botões secundários */
+#tela_login > div:last-child {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+
+#tela_login > div:last-child button {
+width: 100%;
+padding: 12px;
+background: transparent;
+border: 2px solid var(--accent);
+color: var(--accent);
+border-radius: 9999px;
+font-size: 14px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+#tela_login > div:last-child button:hover {
+background: rgba(254, 127, 45, 0.08);
+}
+
+/* Remove underline */
+a {
+text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+#tela_login {
+padding: 28px 20px;
+}
+}
+
+/* Acessibilidade */
+button:focus,
+input:focus {
+outline: 3px solid rgba(254, 127, 45, 0.4);
+outline-offset: 2px;
+}
+
+/* =============================================
+PÁGINA DE PERFIL
+============================================= */
+
+:root {
+--bg: #F5FBE6;
+--card: #ffffff;
+--muted: #233D4D;
+--primary: #215E61;
+--accent: #FE7F2D;
+--radius: 20px;
+--shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+min-height: 100vh;
+color: var(--muted);
+padding-bottom: 90px;
+}
+
+/* Container principal */
+#tela_perfil {
+max-width: 640px;
+margin: 0 auto;
+padding: 20px;
+}
+
+/* Header */
+#tela_perfil > div:first-child {
+text-align: center;
+margin-bottom: 28px;
+}
+
+#tela_perfil h1 {
+font-size: 30px;
+font-weight: 700;
+color: var(--primary);
+}
+
+#tela_perfil > div:first-child p {
+font-size: 15px;
+color: var(--muted);
+}
+
+/* Cards (todas as seções principais) */
+#tela_perfil > div:nth-child(2),
+#tela_perfil > div:nth-child(3),
+#tela_perfil > div:nth-child(4) {
+background: var(--card);
+border-radius: var(--radius);
+padding: 24px 20px;
+box-shadow: var(--shadow);
+margin-bottom: 24px;
+}
+
+/* Títulos das seções */
+#tela_perfil h2 {
+font-size: 18px;
+font-weight: 700;
+color: var(--primary);
+margin-bottom: 12px;
+}
+
+/* Informações do perfil */
+#tela_perfil > div:nth-child(2) p {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 14px;
+margin-bottom: 10px;
+}
+
+/* Botões "Editar" pequenos */
+#tela_perfil button {
+font-size: 12px;
+padding: 6px 12px;
+border-radius: 9999px;
+border: none;
+background: #eef4eb;
+color: var(--muted);
+cursor: pointer;
+transition: 0.2s;
+}
+
+#tela_perfil button:hover {
+background: var(--accent);
+color: white;
+}
+
+/* Seção Sobre */
+#tela_perfil > div:nth-child(3) p {
+font-size: 14px;
+line-height: 1.5;
+position: relative;
+}
+
+#tela_perfil > div:nth-child(3) button {
+margin-top: 10px;
+}
+
+/* Privacidade */
+#tela_perfil > div:nth-child(4) > div {
+margin-bottom: 16px;
+}
+
+#tela_perfil label {
+font-weight: 600;
+font-size: 14px;
+}
+
+#tela_perfil input[type="radio"] {
+margin-right: 6px;
+}
+
+#tela_perfil > div:nth-child(4) p {
+font-size: 13px;
+color: var(--muted);
+margin-left: 22px;
+}
+
+/* Botão salvar */
+#tela_perfil > div:last-of-type button {
+width: 100%;
+padding: 16px;
+background: var(--primary);
+color: white;
+border-radius: 9999px;
+font-size: 16px;
+font-weight: 600;
+margin-top: 8px;
+}
+
+#tela_perfil > div:last-of-type button:hover {
+background: #1a4a4c;
+transform: translateY(-2px);
+}
+
+/* Remove underline */
+a {
+text-decoration: none;
+}
+
+/* Bottom Navigation (igual conexões) */
+.bottom-nav {
+position: fixed;
+bottom: 16px;
+left: 50%;
+transform: translateX(-50%);
+background: var(--card);
+border-radius: 9999px;
+box-shadow: var(--shadow);
+padding: 8px 12px;
+width: min(92%, 420px);
+z-index: 1000;
+}
+
+.bottom-nav .nav-lista {
+display: flex;
+justify-content: space-around;
+list-style: none;
+gap: 8px;
+}
+
+.bottom-nav button,
+.bottom-nav a button {
+background: transparent;
+border: none;
+padding: 12px 14px;
+border-radius: 9999px;
+font-size: 14px;
+font-weight: 600;
+color: var(--muted);
+cursor: pointer;
+transition: all 0.2s;
+white-space: nowrap;
+}
+
+.bottom-nav button:hover,
+.bottom-nav a button:hover {
+background: #eef4eb;
+color: var(--primary);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+#tela_perfil {
+padding: 16px;
+}
+
+#tela_perfil > div:nth-child(2),
+#tela_perfil > div:nth-child(3),
+#tela_perfil > div:nth-child(4) {
+padding: 20px 16px;
+}
+}
+
+/* Acessibilidade */
+button:focus,
+input:focus {
+outline: 3px solid rgba(254, 127, 45, 0.4);
+outline-offset: 2px;
+}
+
+/* =============================================
+PÁGINA DE RECUPERAR SENHA
+============================================= */
+
+:root {
+--bg: #F5FBE6;
+--card: #ffffff;
+--muted: #233D4D;
+--primary: #215E61;
+--accent: #FE7F2D;
+--radius: 20px;
+--shadow: 0 15px 35px rgba(33, 94, 97, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+background: linear-gradient(180deg, var(--bg) 0%, #E8F2EB 100%);
+font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+min-height: 100vh;
+color: var(--muted);
+
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+/* Container principal */
+#tela_senha > div {
+width: 100%;
+max-width: 420px;
+background: var(--card);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+padding: 36px 28px;
+
+display: flex;
+flex-direction: column;
+gap: 18px;
+}
+
+/* Header */
+#tela_senha p:first-child {
+font-size: 22px;
+font-weight: 700;
+color: var(--primary);
+text-align: center;
+}
+
+#tela_senha p:nth-child(2) {
+font-size: 14px;
+text-align: center;
+color: var(--muted);
+margin-bottom: 10px;
+}
+
+/* Labels */
+#tela_senha label {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 4px;
+display: block;
+}
+
+/* Inputs */
+#tela_senha input {
+width: 100%;
+padding: 14px 16px;
+border-radius: 12px;
+border: 1px solid #dbe7df;
+font-size: 14px;
+outline: none;
+transition: all 0.2s;
+}
+
+#tela_senha input:focus {
+border-color: var(--primary);
+box-shadow: 0 0 0 3px rgba(33, 94, 97, 0.1);
+}
+
+/* Botão principal */
+#tela_senha a button {
+width: 100%;
+padding: 16px;
+background: var(--primary);
+color: white;
+border: none;
+border-radius: 9999px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+#tela_senha a button:hover {
+background: #1a4a4c;
+transform: translateY(-2px);
+}
+
+/* Remove underline */
+a {
+text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+#tela_senha > div {
+padding: 28px 20px;
+}
+}
+
+/* Acessibilidade */
+button:focus,
+input:focus {
+outline: 3px solid rgba(254, 127, 45, 0.4);
+outline-offset: 2px;
+}
