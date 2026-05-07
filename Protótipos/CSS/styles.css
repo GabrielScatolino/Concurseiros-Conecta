@@ -1,258 +1,159 @@
-/* ============================================= */
-/*   CONCURSEIROS CONECTA - STYLES (Estilo Card Pessoal) */
-/* ============================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary: #0066ff;
-    --primary-dark: #0052cc;
-    --text: #1f1f1f;
-    --text-light: #555555;
-    --background: #f4f6f9;
-    --card-bg: #ffffff;
-    --border: #e5e8ed;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    --danger: #ff3b30;
-}
-
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--background);
-    color: var(--text);
-    line-height: 1.6;
-    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0f172a;
+    color: white;
+    padding: 20px;
 }
-
-/* ==================== TELAS ==================== */
 
 .tela {
     display: none;
-    min-height: 100vh;
-    padding: 20px 16px 90px 16px;
-    flex-direction: column;
-    background: var(--background);
+    max-width: 520px;
+    margin: auto;
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .tela.ativa {
-    display: flex;
+    display: block;
 }
 
 /* ==================== TÍTULO ==================== */
 
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* CABEÇALHOS */
 .titulo-container {
-    text-align: center;
-    margin-bottom: 36px;
-    position: relative;
+    margin-bottom: 25px;
 }
 
 .titulo-container h1 {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 8px;
+    color: #38bdf8;
+    margin-bottom: 10px;
 }
 
 .titulo-container p {
-    font-size: 15.5px;
-    color: var(--text-light);
+    color: #cbd5e1;
 }
-
-.btn-voltar {
-    position: absolute;
-    left: 8px;
-    top: 6px;
-    background: none;
-    border: none;
-    font-size: 34px;
-    color: var(--primary);
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ==================== CARDS (Estilo Pessoal) ==================== */
-
-.card {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 24px;
-    margin-bottom: 24px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border);
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-}
-
-.info-box {
-    background-color: #f8fafd;
-    padding: 16px;
-    border-radius: 14px;
-    margin: 16px 0;
-    border-left: 5px solid var(--primary);
-    font-size: 15px;
-}
-
-/* ==================== FORMULÁRIOS ==================== */
 
 .formulario {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .form-group {
-    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
 }
 
-.form-group label {
-    display: block;
+label {
     margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--text);
-    font-size: 15px;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 16px 18px;
-    border: 2px solid var(--border);
-    border-radius: 16px;
-    font-size: 16px;
-    transition: all 0.3s;
-    background: white;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 100px;
+input {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #334155;
+    color: white;
 }
 
 /* ==================== BOTÕES ==================== */
 
+/* BOTÕES */
 button {
-    width: 100%;
-    padding: 16px;
-    background: var(--primary);
-    color: white;
+    padding: 14px;
     border: none;
-    border-radius: 16px;
-    font-size: 17px;
-    font-weight: 600;
+    border-radius: 12px;
+    background: #38bdf8;
+    color: #0f172a;
+    font-weight: bold;
     cursor: pointer;
-    margin: 10px 0;
-    min-height: 56px;
-    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.25);
-    transition: all 0.3s;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: var(--primary-dark);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
+    background: #0ea5e9;
 }
 
 .btn-secundario {
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-    box-shadow: none;
+    background: #334155;
+    color: white;
 }
 
-.btn-secundario:hover {
-    background: rgba(0, 102, 255, 0.08);
-    transform: translateY(-2px);
+.btn-voltar {
+    width: 45px;
+    margin-bottom: 20px;
 }
 
-/* ==================== PERFIL ==================== */
+.card {
+    background: #273449;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
 
+.info-box {
+    background: #334155;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 12px;
+}
+
+.bottom-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.bottom-nav button {
+    flex: 1;
+}
+
+/* PERFIL */
 .perfil-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    margin-bottom: 40px;
-    gap: 16px;
+    gap: 20px;
+    margin-bottom: 25px;
 }
 
 .avatar-circulo {
-    width: 110px;
-    height: 110px;
-    background-color: #e0e0e0;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    background: #334155;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-    color: #555;
-    border: 6px solid white;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* ==================== NAVEGAÇÃO INFERIOR ==================== */
-
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0 12px;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+.info-usuario {
+    text-align: center;
 }
-
-.bottom-nav button {
-    background: none;
-    color: var(--text-light);
-    font-size: 13px;
-    padding: 8px 12px;
-    border-radius: 12px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    transition: all 0.3s;
-}
-
-.bottom-nav button:hover,
-.bottom-nav button.ativo {
-    color: var(--primary);
-    background: rgba(0, 102, 255, 0.08);
-}
-
-/* ==================== OUTROS ==================== */
 
 .logout-btn {
-    background-color: var(--danger) !important;
-    box-shadow: 0 6px 20px rgba(255, 59, 48, 0.25) !important;
+    background: #ef4444;
+    color: white;
 }
 
-/* Ajuste para telas pequenas */
-@media (max-width: 380px) {
-    .titulo-container h1 {
-        font-size: 26px;
+.logout-btn:hover {
+    background: #dc2626;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 10px;
     }
-    .card {
-        padding: 20px;
+
+    .bottom-nav {
+        flex-direction: column;
     }
 }
