@@ -1,159 +1,901 @@
+/* =====================================================
+   CONCURSEIROS CONECTA - STYLES.CSS
+   Arquivo CSS consolidado para todas as páginas
+   ===================================================== */
+
+/* =====================================================
+   VARIÁVEIS DE CORES
+   ===================================================== */
+:root {
+  --cor-principal: #233D4D;
+  --cor-secundaria: #215E61;
+  --cor-destaque: #FE7F2D;
+  --cor-fundo: #F5FBE6;
+  --cor-branco: #FFFFFF;
+  --cor-texto: #333333;
+  --cor-texto-claro: #666666;
+  --cor-borda: #CCCCCC;
+}
+
+/* =====================================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ===================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #0f172a;
-    color: white;
-    padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-.tela {
-    display: none;
-    max-width: 520px;
-    margin: auto;
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+/* =====================================================
+   TIPOGRAFIA
+   ===================================================== */
+h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.5rem;
 }
 
-.tela.ativa {
-    display: block;
+h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.75rem;
 }
 
-/* ==================== TÍTULO ==================== */
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+p {
+  margin-bottom: 0.75rem;
+  color: var(--cor-texto);
 }
 
-/* CABEÇALHOS */
-.titulo-container {
-    margin-bottom: 25px;
+strong {
+  font-weight: 600;
+  color: var(--cor-principal);
 }
 
-.titulo-container h1 {
-    color: #38bdf8;
-    margin-bottom: 10px;
-}
-
-.titulo-container p {
-    color: #cbd5e1;
-}
-
-.formulario {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
+/* =====================================================
+   FORMULÁRIOS - LABELS E INPUTS
+   ===================================================== */
 label {
-    margin-bottom: 8px;
+  display: block;
+  font-weight: 500;
+  color: var(--cor-principal);
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
 }
 
-input {
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    background: #334155;
-    color: white;
+
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="search"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cor-principal);
+  border-radius: 8px;
+  background-color: var(--cor-branco);
+  font-size: 1rem;
+  color: var(--cor-texto);
+  transition: all 0.3s ease;
 }
 
-/* ==================== BOTÕES ==================== */
-
-/* BOTÕES */
-button {
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    background: #38bdf8;
-    color: #0f172a;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="search"]:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(254, 127, 45, 0.1);
 }
 
-button:hover {
-    background: #0ea5e9;
+input::placeholder {
+  color: var(--cor-texto-claro);
+  opacity: 0.7;
 }
 
-.btn-secundario {
-    background: #334155;
-    color: white;
+input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: var(--cor-destaque);
 }
 
-.btn-voltar {
-    width: 45px;
-    margin-bottom: 20px;
+input[type="date"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--cor-principal);
+  background-color: var(--cor-branco);
+  font-size: 1rem;
+  color: var(--cor-texto);
+  transition: all 0.3s ease;
 }
 
-.card {
-    background: #273449;
-    padding: 20px;
-    border-radius: 16px;
-    margin-bottom: 20px;
+input[type="date"]:focus {
+  outline: none;
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(254, 127, 45, 0.1);
 }
 
-.info-box {
-    background: #334155;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 12px;
+/* =====================================================
+   BOTÕES
+   ===================================================== */
+button,
+a > button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
 }
 
-.bottom-nav {
-    display: flex;
-    gap: 10px;
-    margin-top: 25px;
+/* Botão Primário (CTA) */
+button,
+#tela_login a > button:first-of-type,
+#tela_cadastro a > button,
+#tela_senha a > button,
+#tela_confirmacao a > button,
+#tela_home > div:last-of-type button,
+.editar-perfil,
+.editar-btn:not(.logout-btn) {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
 }
 
-.bottom-nav button {
-    flex: 1;
+button:hover,
+#tela_login a > button:first-of-type:hover,
+#tela_cadastro a > button:hover,
+#tela_senha a > button:hover,
+#tela_confirmacao a > button:hover {
+  background-color: #e56f25;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(254, 127, 45, 0.3);
 }
 
-/* PERFIL */
-.perfil-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
+/* Botões Secundários */
+#tela_login > div:last-child button,
+#tela_cadastro > div > div:first-child button,
+#tela_conexoes > div:nth-child(2) button,
+#tela_conexoes > div:nth-child(4) button,
+.bottom-nav button,
+.nav-lista button {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
 }
 
-.avatar-circulo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #334155;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#tela_login > div:last-child button:hover,
+#tela_cadastro > div > div:first-child button:hover,
+#tela_conexoes > div:nth-child(2) button:hover,
+#tela_conexoes > div:nth-child(4) button:hover {
+  background-color: #1a4d4f;
+  transform: translateY(-2px);
 }
 
-.info-usuario {
-    text-align: center;
-}
-
+/* Botão de Logout */
 .logout-btn {
-    background: #ef4444;
-    color: white;
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  width: 100%;
 }
 
 .logout-btn:hover {
-    background: #dc2626;
+  background-color: #e56f25;
 }
 
+/* Botões de edição inline */
+#tela_perfil button[type="button"] {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+#tela_perfil button[type="button"]:hover {
+  background-color: #1a4d4f;
+}
+
+/* =====================================================
+   LINKS
+   ===================================================== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* =====================================================
+   SEÇÕES PRINCIPAIS
+   ===================================================== */
+#tela_login,
+#tela_cadastro,
+#tela_senha,
+#tela_confirmacao,
+#tela_home,
+#tela_conexoes,
+#tela_perfil {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: 100vh;
+}
+
+.busca-container,
+.config-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+/* =====================================================
+   TELA DE LOGIN (#tela_login)
+   ===================================================== */
+#tela_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#tela_login > div:first-child {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#tela_login > div:first-child p:first-child {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+  margin-bottom: 0.5rem;
+}
+
+#tela_login > div:first-child p:last-child {
+  font-size: 1rem;
+  color: var(--cor-secundaria);
+}
+
+#tela_login > div:nth-child(2),
+#tela_login > div:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+}
+
+#tela_login > div:last-child {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+#tela_login > div:last-child button {
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+}
+
+/* =====================================================
+   TELA DE CADASTRO (#tela_cadastro)
+   ===================================================== */
+#tela_cadastro > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#tela_cadastro > div > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+#tela_cadastro > div > div:first-child button {
+  background-color: transparent;
+  color: var(--cor-principal);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tela_cadastro > div > div:first-child button:hover {
+  background-color: rgba(35, 61, 77, 0.1);
+  transform: none;
+}
+
+#tela_cadastro > div > div:first-child p:first-of-type {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.25rem;
+}
+
+#tela_cadastro > div > div:first-child p:last-of-type {
+  font-size: 0.9rem;
+  color: var(--cor-secundaria);
+}
+
+#tela_cadastro > div > div:not(:first-child) {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   TELA DE RECUPERAR SENHA (#tela_senha)
+   ===================================================== */
+#tela_senha > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#tela_senha > div > div:first-child p:first-child {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+#tela_senha > div > div:first-child p:last-child {
+  font-size: 1rem;
+  color: var(--cor-secundaria);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#tela_senha > div > div:not(:first-child) {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   TELA DE CONFIRMAÇÃO (#tela_confirmacao)
+   ===================================================== */
+#tela_confirmacao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#tela_confirmacao > div {
+  text-align: center;
+  max-width: 450px;
+}
+
+#tela_confirmacao > div > div:first-child p {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 1.5rem;
+}
+
+#tela_confirmacao > div > div:last-child {
+  background-color: var(--cor-branco);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#tela_confirmacao > div > div:last-child > div {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+#tela_confirmacao > div > div:last-child p:first-of-type {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 1rem;
+}
+
+#tela_confirmacao > div > div:last-child p:last-of-type {
+  font-size: 0.95rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* =====================================================
+   TELA HOME (#tela_home)
+   ===================================================== */
+#tela_home {
+  padding-bottom: 100px;
+}
+
+#tela_home > div:first-child {
+  margin-bottom: 1.5rem;
+}
+
+#tela_home > div:nth-child(2) {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+#tela_home > div:nth-child(2) > p:first-child {
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 1rem;
+}
+
+#tela_home > div:nth-child(2) > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#tela_home > div:nth-child(2) > div p {
+  margin-bottom: 0.25rem;
+}
+
+#tela_home > div:last-of-type {
+  text-align: center;
+}
+
+/* =====================================================
+   TELA CADASTRO VIAGEM (#tela_cadastro_viagem)
+   ===================================================== */
+    #form-viagem {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    .campo-grupo {
+      display: flex;
+      flex-direction: column;
+    }
+
+/* =====================================================
+   TELA CONEXÕES (#tela_conexoes)
+   ===================================================== */
+#tela_conexoes {
+  padding-bottom: 100px;
+}
+
+#tela_conexoes > div:first-child {
+  margin-bottom: 1.5rem;
+}
+
+#tela_conexoes > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+#tela_conexoes > div:nth-child(2) button {
+  width: 100%;
+}
+
+#tela_conexoes > div:nth-child(3),
+#tela_conexoes > div:nth-child(4) {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+#tela_conexoes > div:nth-child(3) > div,
+#tela_conexoes > div:nth-child(4) > div {
+  background-color: var(--cor-fundo);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+#tela_conexoes > div:nth-child(3) > div:last-child,
+#tela_conexoes > div:nth-child(4) > div:last-child {
+  margin-bottom: 0;
+}
+
+#tela_conexoes > div:nth-child(3) > div p,
+#tela_conexoes > div:nth-child(4) > div p {
+  margin-bottom: 0.25rem;
+}
+
+#tela_conexoes > div:nth-child(4) > div button {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+/* =====================================================
+   TELA BUSCAR (.busca-container)
+   ===================================================== */
+.header-busca {
+  margin-bottom: 1.5rem;
+}
+
+.header-busca h1 {
+  margin-bottom: 0.25rem;
+}
+
+.header-busca p {
+  color: var(--cor-secundaria);
+  font-size: 0.95rem;
+}
+
+.area-pesquisa {
+  margin-bottom: 2rem;
+}
+
+.area-pesquisa form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.area-pesquisa button {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+}
+
+.area-pesquisa button:hover {
+  background-color: #e56f25;
+}
+
+.resultados-sugestoes {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.resultados-sugestoes h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.resultados-sugestoes ul {
+  list-style: none;
+}
+
+.resultados-sugestoes ul li {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.resultados-sugestoes ul li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.resultados-sugestoes ul li a {
+  color: var(--cor-secundaria);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.resultados-sugestoes ul li a:hover {
+  color: var(--cor-destaque);
+}
+
+/* =====================================================
+   TELA PERFIL (#tela_perfil)
+   ===================================================== */
+#tela_perfil {
+  padding-bottom: 100px;
+}
+
+#tela_perfil > div:first-child {
+  margin-bottom: 1.5rem;
+}
+
+#tela_perfil > div:nth-child(2) {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+#tela_perfil > div:nth-child(2) p {
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#tela_perfil > div:nth-child(3) {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+#tela_perfil > div:nth-child(3) p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+#tela_perfil > div:nth-child(4) {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+#tela_perfil > div:nth-child(4) > div {
+  background-color: var(--cor-fundo);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+#tela_perfil > div:nth-child(4) > div:last-child {
+  margin-bottom: 0;
+}
+
+#tela_perfil > div:nth-child(4) label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.5rem;
+}
+
+#tela_perfil > div:nth-child(4) > div p {
+  font-size: 0.9rem;
+  color: var(--cor-texto-claro);
+  margin-bottom: 0;
+  margin-left: 1.5rem;
+}
+
+#tela_perfil > div:last-child {
+  text-align: center;
+}
+
+#tela_perfil .editar-btn {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* =====================================================
+   TELA CONFIGURAÇÕES (.config-container)
+   ===================================================== */
+.header-PERFIL {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.avatar-container {
+  margin-bottom: 1rem;
+}
+
+.avatar-circulo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.info-usuario {
+  margin-bottom: 1rem;
+}
+
+.nome-usuario {
+  font-size: 1.5rem;
+  color: var(--cor-principal);
+  margin-bottom: 0.25rem;
+}
+
+.email-usuario {
+  color: var(--cor-texto-claro);
+  font-size: 0.95rem;
+}
+
+.editar-perfil {
+  margin-top: 0.5rem;
+}
+
+.card-config {
+  background-color: var(--cor-branco);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.card-titulo {
+  font-size: 1.15rem;
+  color: var(--cor-principal);
+  margin-bottom: 1rem;
+}
+
+.lista-config {
+  list-style: none;
+}
+
+.item-config {
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 0.75rem 0;
+}
+
+.item-config:last-child {
+  border-bottom: none;
+}
+
+.link-config {
+  display: block;
+  color: var(--cor-secundaria);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link-config:hover {
+  color: var(--cor-destaque);
+}
+
+.link-text {
+  display: block;
+}
+
+/* =====================================================
+   FOOTER DE NAVEGAÇÃO (.bottom-nav)
+   ===================================================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--cor-principal);
+  padding: 1rem 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-lista {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.nav-lista li {
+  flex: 1;
+  text-align: center;
+}
+
+.nav-lista button {
+  background-color: transparent;
+  color: var(--cor-branco);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.nav-lista button:hover {
+  background-color: rgba(254, 127, 45, 0.2);
+  transform: none;
+}
+
+/* Estado ativo no footer (quando não está dentro de <a>) */
+.nav-lista li:has(button:not([href])) button,
+.nav-lista li > button {
+  background-color: var(--cor-destaque);
+  font-weight: 600;
+}
+
+/* =====================================================
+   RESPONSIVIDADE
+   ===================================================== */
 @media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
 
-    body {
-        padding: 10px;
-    }
+  h1 {
+    font-size: 1.5rem;
+  }
 
-    .bottom-nav {
-        flex-direction: column;
-    }
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  #tela_login,
+  #tela_cadastro,
+  #tela_senha,
+  #tela_confirmacao,
+  #tela_home,
+  #tela_conexoes,
+  #tela_perfil,
+  .busca-container,
+  .config-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .nav-lista button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  #tela_login > div:last-child {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-lista {
+    padding: 0 0.5rem;
+  }
+
+  .nav-lista button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.25rem;
+  }
+
+  button,
+  a > button {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* =====================================================
+   UTILITÁRIOS
+   ===================================================== */
+.text-center {
+  text-align: center;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
 }

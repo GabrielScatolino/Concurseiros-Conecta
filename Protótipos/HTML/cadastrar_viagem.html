@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concurseiros Conecta - Cadastrar Viagem</title>
+  <link rel="stylesheet" href="/CSS/styles.css" />
+</head>
+
+<body>
+  <!-- Utilizando o container com id tela_cadastro e padding-bottom para alinhar perfeitamente com a bottom-nav -->
+  <section id="tela_cadastro" style="padding-bottom: 100px;">
+    <div>
+      <!-- Cabeçalho padronizado com botão de voltar -->
+      <div>
+        <a href="home.html"><button type="button" title="Voltar à Home">&#8592;</button></a>
+        <div>
+          <p>Cadastrar Viagem</p>
+          <p>Preencha os dados da sua próxima jornada</p>
+        </div>
+      </div>
+
+      <!-- Formulário com os campos solicitados e identificação para o JavaScript -->
+      <form id="form-viagem" action="#" method="POST">
+        <div class="campo-grupo">
+          <label for="origem">Origem</label>
+          <input type="text" id="origem" placeholder="Cidade de saída (ex: São Paulo, SP)" required />
+        </div>
+
+        <div class="campo-grupo">
+          <label for="destino">Destino</label>
+          <input type="text" id="destino" placeholder="Cidade do certame (ex: Florianópolis, SC)" required />
+        </div>
+
+        <div class="campo-grupo">
+          <label for="data_viagem">Data da Viagem</label>
+          <input type="date" id="data_viagem" required />
+        </div>
+
+        <div class="campo-grupo">
+          <label for="concurso">Concurso</label>
+          <input type="text" id="concurso" placeholder="Nome do concurso (ex: Prefeitura de Florianópolis)" required />
+        </div>
+
+        <div class="campo-grupo">
+          <label for="cargo">Cargo Concorrido</label>
+          <input type="text" id="cargo" placeholder="Ex: Analista Administrativo" required />
+        </div>
+
+        <div class="campo-grupo">
+          <label for="data_prova">Data da Prova</label>
+          <input type="date" id="data_prova" required />
+        </div>
+
+        <!-- Botão primário estilizado de forma nativa pelo CSS consolidado -->
+        <button type="submit">Cadastrar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Barra de Navegação Inferior fixa -->
+  <footer class="bottom-nav">
+    <nav aria-label="Navegação principal">
+      <ul class="nav-lista">
+        <li><a href="home.html"><button type="button">Home</button></a></li>
+        <li><a href="conexoes.html"><button type="button">Conexões</button></a></li>
+        <li><a href="buscar.html"><button type="button">Buscar</button></a></li>
+        <li><a href="configuracoes.html"><button type="button">Configurações</button></a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  <!-- Importação do arquivo JavaScript com as lógicas de validação -->
+  <script src="script.js"></script>
+</body>
+
+</html>
