@@ -81,6 +81,7 @@ label {
 input[type="email"],
 input[type="password"],
 input[type="text"],
+input[type="date"],
 input[type="search"] {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -95,6 +96,7 @@ input[type="search"] {
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="text"]:focus,
+input[type="date"]:focus,
 input[type="search"]:focus {
   outline: none;
   border-color: var(--cor-destaque);
@@ -228,6 +230,7 @@ a:hover {
 #tela_cadastro,
 #tela_senha,
 #tela_confirmacao,
+#tela_cadastrar_viagem,
 #tela_home,
 #tela_conexoes,
 #tela_perfil {
@@ -459,16 +462,16 @@ a:hover {
 /* =====================================================
    TELA CADASTRO VIAGEM (#tela_cadastro_viagem)
    ===================================================== */
-    #form-viagem {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      width: 100%;
-    }
-    .campo-grupo {
-      display: flex;
-      flex-direction: column;
-    }
+#form-viagem {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+}
 
 /* =====================================================
    TELA CONEXÕES (#tela_conexoes)
