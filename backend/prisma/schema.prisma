@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Modelo de Usuário (CRUD 1)
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+// Modelo de Edital (CRUD 2)
+model Edital {
+  id          String   @id @default(uuid())
+  title       String
+  banca       String
+  description String?
+  examDate    DateTime?
+  createdAt   DateTime @default(now())
+}

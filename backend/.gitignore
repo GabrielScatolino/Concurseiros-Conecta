@@ -1,0 +1,15 @@
+# Dependências do Node (nunca subir, são pesadas demais)
+node_modules/
+
+# Variáveis de ambiente e credenciais locais (segurança em primeiro lugar!)
+.env
+.env.local
+
+# Arquivos de log de erros
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Pastas geradas pelo sistema operacional (opcional, mas bom ter)
+.DS_Store
+Thumbs.db
