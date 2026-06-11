@@ -1,0 +1,570 @@
+/* =====================================================
+   CONCURSEIROS CONECTA — STYLES.CSS
+   Layout: desktop exibe chassis iPhone 16
+   Toda a UI do app vive DENTRO do .iphone-screen
+   ===================================================== */
+
+/* ── Variáveis ── */
+:root {
+  --cor-principal:   #233D4D;
+  --cor-secundaria:  #215E61;
+  --cor-destaque:    #FE7F2D;
+  --cor-fundo:       #F5FBE6;
+  --cor-branco:      #FFFFFF;
+  --cor-texto:       #333333;
+  --cor-texto-claro: #666666;
+  --cor-borda:       #CCCCCC;
+
+  /* Chassis */
+  --phone-w:        375px;
+  --phone-h:        812px;
+  --phone-radius:   54px;
+  --screen-inset:   6px;
+  --screen-radius:  48px;
+  --nav-h:          74px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+/* ═══════════════════════════════════════════════
+   DESKTOP BACKGROUND
+═══════════════════════════════════════════════ */
+.desktop-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a2a35 0%, #0f1e28 50%, #162028 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ═══════════════════════════════════════════════
+   CHASSIS — IPHONE 16
+═══════════════════════════════════════════════ */
+.iphone {
+  position: relative;
+  width: var(--phone-w);
+  height: var(--phone-h);
+  background: #1c1c1e;
+  border-radius: var(--phone-radius);
+  /* Anel externo + reflexo de borda */
+  box-shadow:
+    0 0 0 1px #3a3a3c,
+    0 0 0 3px #1c1c1e,
+    0 0 0 4px #48484a,
+    0 40px 100px rgba(0,0,0,0.7),
+    0 10px 30px rgba(0,0,0,0.5),
+    inset 0 0 0 1px #2c2c2e;
+  flex-shrink: 0;
+}
+
+/* Botões laterais físicos */
+.iphone-btn {
+  position: absolute;
+  background: #2c2c2e;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.iphone-btn.mute     { width: 3px; height: 28px; left: -4px; top: 118px; border-radius: 3px 0 0 3px; }
+.iphone-btn.vol-up   { width: 3px; height: 42px; left: -4px; top: 158px; border-radius: 3px 0 0 3px; }
+.iphone-btn.vol-down { width: 3px; height: 42px; left: -4px; top: 210px; border-radius: 3px 0 0 3px; }
+.iphone-btn.power    { width: 3px; height: 72px; right: -4px; top: 168px; border-radius: 0 3px 3px 0; }
+
+/* ── Tela (área OLED) ── */
+.iphone-screen {
+  position: absolute;
+  inset: var(--screen-inset);
+  background: var(--cor-fundo);
+  border-radius: var(--screen-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Dynamic Island ── */
+.dynamic-island {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 118px;
+  height: 34px;
+  background: #1c1c1e;
+  border-radius: 20px;
+  z-index: 200;
+}
+
+/* ── Status Bar ── */
+.status-bar {
+  height: 52px;
+  padding: 14px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 100;
+  color: var(--cor-principal);
+}
+.status-time {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cor-principal);
+}
+.battery-icon {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+.battery-fill {
+  width: 22px;
+  height: 11px;
+  border: 1.5px solid var(--cor-principal);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.battery-fill::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  right: 20%;
+  background: var(--cor-principal);
+  border-radius: 1px;
+}
+.battery-tip {
+  width: 2px;
+  height: 5px;
+  background: var(--cor-principal);
+  border-radius: 0 1px 1px 0;
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════
+   APP VIEWPORT — scroll interno
+═══════════════════════════════════════════════ */
+.app-viewport {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* esconde scrollbar mas mantém funcional */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+}
+.app-viewport::-webkit-scrollbar { display: none; }
+
+/* ═══════════════════════════════════════════════
+   SPA — CONTROLE DE TELAS
+═══════════════════════════════════════════════ */
+.tela           { display: none; }
+.tela.ativa     { display: block; }
+.tela-center    { display: none; }
+.tela-center.ativa { display: flex; }
+.tela-login     { display: none; }
+.tela-login.ativa  { display: flex; }
+
+/* ── Bottom Nav: visível apenas em telas com .tem-nav ── */
+.bottom-nav { display: none; }
+.tem-nav.ativa ~ * .bottom-nav,
+.tela.tem-nav.ativa + .bottom-nav { display: block; }
+
+/* Solução direta: JS controla via classe no footer */
+.bottom-nav.visivel { display: block !important; }
+
+/* ═══════════════════════════════════════════════
+   TIPOGRAFIA INTERNA
+═══════════════════════════════════════════════ */
+h1 { font-size: 1.4rem; font-weight: 600; color: var(--cor-principal); margin-bottom: 0.3rem; }
+h2 { font-size: 1.1rem; font-weight: 600; color: var(--cor-principal); margin-bottom: 0.5rem; }
+p  { font-size: 0.875rem; color: var(--cor-texto); margin-bottom: 0.5rem; line-height: 1.5; }
+strong { font-weight: 600; color: var(--cor-principal); }
+a  { text-decoration: none; color: inherit; }
+
+/* ═══════════════════════════════════════════════
+   LAYOUT INTERNO DAS TELAS
+═══════════════════════════════════════════════ */
+.tela-inner {
+  padding: 1rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Header de seção com título + subtítulo */
+.tela-header-bloco { margin-bottom: 0.25rem; }
+.tela-header-bloco h1 { margin-bottom: 0.1rem; }
+.tela-header-bloco p  { color: var(--cor-secundaria); font-size: 0.82rem; margin: 0; }
+
+.tela-top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.tela-top-row .tela-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin: 0;
+}
+.tela-top-row .tela-sub {
+  font-size: 0.8rem;
+  color: var(--cor-secundaria);
+  margin: 0;
+}
+
+.tela-header-centered {
+  text-align: center;
+}
+.tela-header-centered .tela-titulo {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.25rem;
+}
+.tela-header-centered .tela-sub {
+  font-size: 0.85rem;
+  color: var(--cor-secundaria);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--cor-branco);
+  border-radius: 14px;
+  padding: 1rem;
+  border: 0.5px solid var(--cor-borda);
+}
+.card h2 { margin-bottom: 0.6rem; }
+.card-label {
+  font-weight: 600;
+  color: var(--cor-principal);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+.card-itens {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.card-itens p { margin: 0; font-size: 0.82rem; }
+.card-item {
+  background: var(--cor-fundo);
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+.card-item:last-child { margin-bottom: 0; }
+.card-item p { margin-bottom: 0.2rem; font-size: 0.82rem; }
+.card-item p:last-child { margin-bottom: 0; }
+
+/* ═══════════════════════════════════════════════
+   FORMULÁRIOS
+═══════════════════════════════════════════════ */
+label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--cor-principal);
+  margin-bottom: 0.3rem;
+}
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="date"],
+input[type="search"] {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border: 1.5px solid var(--cor-borda);
+  border-radius: 10px;
+  background: var(--cor-branco);
+  font-size: 0.875rem;
+  color: var(--cor-texto);
+  transition: border-color 0.2s;
+}
+input:focus { outline: none; border-color: var(--cor-destaque); }
+input::placeholder { color: var(--cor-texto-claro); opacity: 0.7; }
+input[type="radio"] { margin-right: 0.4rem; accent-color: var(--cor-destaque); }
+
+.campo-grupo { display: flex; flex-direction: column; gap: 0.3rem; }
+
+/* ═══════════════════════════════════════════════
+   BOTÕES
+═══════════════════════════════════════════════ */
+button {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--cor-destaque);
+  color: var(--cor-branco);
+  transition: opacity 0.15s, transform 0.1s;
+  width: 100%;
+}
+button:active { opacity: 0.85; transform: scale(0.98); }
+
+.btn-sec {
+  background: var(--cor-secundaria);
+  color: var(--cor-branco);
+}
+.btn-voltar {
+  background: transparent;
+  color: var(--cor-principal);
+  font-size: 1.3rem;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.btn-voltar:active { background: rgba(35,61,77,0.1); transform: none; }
+.btn-sm {
+  width: auto;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.76rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+.btn-center { text-align: center; }
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.editar-btn { background: var(--cor-destaque); }
+.editar-perfil { background: var(--cor-destaque); }
+.logout-btn { background: var(--cor-destaque); width: 100%; }
+
+/* ═══════════════════════════════════════════════
+   TELA LOGIN
+═══════════════════════════════════════════════ */
+.tela-login {
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  gap: 0.9rem;
+  min-height: calc(var(--phone-h) - 52px - var(--nav-h));
+}
+.login-header { text-align: center; margin-bottom: 0.5rem; }
+.login-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-principal);
+  margin-bottom: 0.3rem;
+}
+.login-sub { font-size: 0.875rem; color: var(--cor-secundaria); }
+
+/* ═══════════════════════════════════════════════
+   TELA CONFIRMAÇÃO
+═══════════════════════════════════════════════ */
+.tela-center {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--phone-h) - 52px);
+  padding: 2rem 1.5rem;
+}
+.confirmacao-box { width: 100%; }
+.confirmacao-card {
+  background: var(--cor-branco);
+  border-radius: 14px;
+  padding: 1.5rem;
+  border: 0.5px solid var(--cor-borda);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.confirmacao-icone { font-size: 3rem; margin-bottom: 0.75rem; }
+.confirmacao-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.75rem;
+}
+.confirmacao-texto {
+  font-size: 0.85rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+/* ═══════════════════════════════════════════════
+   BUSCAR
+═══════════════════════════════════════════════ */
+.area-pesquisa form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.resultados-sugestoes ul { list-style: none; }
+.resultados-sugestoes ul li {
+  padding: 0.6rem 0;
+  border-bottom: 0.5px solid var(--cor-borda);
+  font-size: 0.875rem;
+}
+.resultados-sugestoes ul li:last-child { border-bottom: none; }
+.resultados-sugestoes ul li a { color: var(--cor-secundaria); font-weight: 500; }
+
+/* ═══════════════════════════════════════════════
+   CONFIGURAÇÕES
+═══════════════════════════════════════════════ */
+.header-PERFIL {
+  background: var(--cor-branco);
+  border-radius: 14px;
+  border: 0.5px solid var(--cor-borda);
+  padding: 1rem;
+  text-align: center;
+}
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.avatar-circulo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: var(--cor-secundaria);
+  color: var(--cor-branco);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.avatar-container .editar-btn {
+  width: auto;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.76rem;
+}
+.info-usuario { margin-bottom: 0.5rem; }
+.nome-usuario { font-size: 1.1rem; color: var(--cor-principal); margin-bottom: 0.1rem; }
+.email-usuario { font-size: 0.78rem; color: var(--cor-texto-claro); margin: 0; }
+.editar-perfil { width: auto; padding: 0.4rem 1rem; font-size: 0.82rem; }
+
+.card-config {
+  background: var(--cor-branco);
+  border-radius: 14px;
+  border: 0.5px solid var(--cor-borda);
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.75rem;
+}
+.card-titulo { font-size: 0.95rem; color: var(--cor-principal); margin-bottom: 0.5rem; }
+.lista-config { list-style: none; }
+.item-config {
+  padding: 0.6rem 0;
+  border-bottom: 0.5px solid var(--cor-borda);
+}
+.item-config:last-child { border-bottom: none; }
+.link-config {
+  display: block;
+  color: var(--cor-secundaria);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.link-text { display: block; }
+
+/* ═══════════════════════════════════════════════
+   PERFIL
+═══════════════════════════════════════════════ */
+.card p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+.card p:last-child { margin-bottom: 0; }
+.privacidade-opcao {
+  background: var(--cor-fundo);
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.privacidade-opcao:last-child { margin-bottom: 0; }
+.privacidade-opcao label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.2rem;
+}
+.privacidade-opcao p {
+  font-size: 0.78rem;
+  color: var(--cor-texto-claro);
+  margin: 0 0 0 1.3rem;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════
+   BOTTOM NAV (fixo DENTRO do iphone-screen)
+═══════════════════════════════════════════════ */
+.bottom-nav {
+  flex-shrink: 0;
+  background: var(--cor-principal);
+  padding: 0.5rem 0 0;
+}
+.nav-lista {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0 0.25rem;
+}
+.nav-lista li { flex: 1; }
+.nav-lista button {
+  background: transparent;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.4rem 0.25rem;
+  border-radius: 8px;
+  width: 100%;
+  transition: color 0.15s;
+}
+.nav-lista button:active { transform: none; }
+.nav-lista button.nav-ativo {
+  color: var(--cor-destaque);
+  font-weight: 700;
+}
+.home-indicator {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-indicator::after {
+  content: '';
+  width: 100px;
+  height: 5px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 3px;
+}
+
+/* ═══════════════════════════════════════════════
+   FORM VIAGEM
+═══════════════════════════════════════════════ */
+#form-viagem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}

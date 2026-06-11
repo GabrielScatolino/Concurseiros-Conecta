@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concurseiros Conecta</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       CHASSIS DO IPHONE 16
+  ════════════════════════════════════════════ -->
+  <div class="desktop-bg">
+    <div class="iphone">
+
+      <!-- Botões físicos -->
+      <div class="iphone-btn mute"></div>
+      <div class="iphone-btn vol-up"></div>
+      <div class="iphone-btn vol-down"></div>
+      <div class="iphone-btn power"></div>
+
+      <!-- Tela -->
+      <div class="iphone-screen">
+
+        <!-- Dynamic Island -->
+        <div class="dynamic-island"></div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+          <span class="status-time">9:41</span>
+          <div class="status-icons">
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+              <rect x="0" y="3" width="3" height="9" rx="1" fill="currentColor" opacity="0.4"/>
+              <rect x="4" y="2" width="3" height="10" rx="1" fill="currentColor" opacity="0.6"/>
+              <rect x="8" y="0" width="3" height="12" rx="1" fill="currentColor" opacity="0.8"/>
+              <rect x="12" y="0" width="3" height="12" rx="1" fill="currentColor"/>
+            </svg>
+            <svg width="16" height="12" viewBox="0 0 20 14" fill="none">
+              <path d="M10 2.5C13.5 2.5 16.6 4 18.8 6.5L20 5C17.4 2 13.9 0 10 0C6.1 0 2.6 2 0 5L1.2 6.5C3.4 4 6.5 2.5 10 2.5Z" fill="currentColor" opacity="0.4"/>
+              <path d="M10 6C12.2 6 14.2 6.9 15.7 8.4L17 7C15.1 5.1 12.7 4 10 4C7.3 4 4.9 5.1 3 7L4.3 8.4C5.8 6.9 7.8 6 10 6Z" fill="currentColor" opacity="0.7"/>
+              <path d="M10 9.5C11.4 9.5 12.6 10.1 13.5 11L14.8 9.7C13.5 8.4 11.8 7.5 10 7.5C8.2 7.5 6.5 8.4 5.2 9.7L6.5 11C7.4 10.1 8.6 9.5 10 9.5Z" fill="currentColor"/>
+              <circle cx="10" cy="13" r="1.5" fill="currentColor"/>
+            </svg>
+            <div class="battery-icon">
+              <div class="battery-fill"></div>
+              <div class="battery-tip"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteúdo do App (scroll interno) -->
+        <div class="app-viewport" id="app-viewport">
+
+          <!-- ══ TELA: LOGIN ══ -->
+          <section id="tela_login" class="tela tela-login ativa">
+            <div class="login-header">
+              <p class="login-brand">Concurseiros Conecta</p>
+              <p class="login-sub">Faça login para continuar</p>
+            </div>
+            <div class="campo-grupo">
+              <label for="login-email">E-mail</label>
+              <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email" />
+            </div>
+            <div class="campo-grupo">
+              <label for="login-senha">Senha</label>
+              <input type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password" />
+            </div>
+            <button onclick="App.ir('home')">Entrar</button>
+            <div class="login-links">
+              <button class="btn-sec" onclick="App.ir('recuperar_senha')">Esqueci minha senha</button>
+              <button class="btn-sec" onclick="App.ir('cadastro')">Cadastrar-se</button>
+            </div>
+          </section>
+
+          <!-- ══ TELA: CADASTRO ══ -->
+          <section id="tela_cadastro" class="tela">
+            <div class="tela-inner">
+              <div class="tela-top-row">
+                <button class="btn-voltar" type="button" onclick="App.voltar()">&#8592;</button>
+                <div>
+                  <p class="tela-titulo">Criar conta</p>
+                  <p class="tela-sub">Preencha os dados abaixo</p>
+                </div>
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-email">E-mail</label>
+                <input type="email" id="cad-email" placeholder="seu@email.com" autocomplete="email" />
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-cpf">CPF</label>
+                <input type="text" id="cad-cpf" placeholder="000.000.000-00" maxlength="14" oninput="App.maskCPF(this)" inputmode="numeric" />
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-senha">Senha</label>
+                <input type="password" id="cad-senha" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-confirmar">Confirmar senha</label>
+                <input type="password" id="cad-confirmar" placeholder="Repita a senha" autocomplete="new-password" />
+              </div>
+              <button type="button" onclick="App.ir('login')">Criar conta</button>
+            </div>
+          </section>
+
+          <!-- ══ TELA: RECUPERAR SENHA ══ -->
+          <section id="tela_senha" class="tela">
+            <div class="tela-inner">
+              <div class="tela-header-centered">
+                <p class="tela-titulo">Alterar senha</p>
+                <p class="tela-sub">Informe seus dados cadastrados</p>
+              </div>
+              <div class="campo-grupo">
+                <label for="rec-email">E-mail</label>
+                <input type="email" id="rec-email" placeholder="seu@email.com" autocomplete="email" />
+              </div>
+              <div class="campo-grupo">
+                <label for="rec-cpf">CPF</label>
+                <input type="text" id="rec-cpf" placeholder="000.000.000-00" maxlength="14" oninput="App.maskCPF(this)" inputmode="numeric" />
+              </div>
+              <button type="button" onclick="App.ir('confirmacao')">Enviar</button>
+            </div>
+          </section>
+
+          <!-- ══ TELA: CONFIRMAÇÃO ══ -->
+          <section id="tela_confirmacao" class="tela tela-center">
+            <div class="confirmacao-box">
+              <div class="confirmacao-card">
+                <div class="confirmacao-icone">&#9993;</div>
+                <p class="confirmacao-titulo">E-mail enviado!</p>
+                <p class="confirmacao-texto">
+                  Enviamos um link de recuperação de senha para o endereço de e-mail vinculado à sua conta.<br><br>
+                  Verifique também a pasta de spam, caso não encontre na caixa de entrada.
+                </p>
+                <button type="button" onclick="App.ir('login')">Voltar ao login</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ══ TELA: HOME ══ -->
+          <section id="tela_home" class="tela tem-nav">
+            <div class="tela-inner">
+              <div class="tela-header-bloco">
+                <h1>Home</h1>
+                <p>Olá, Gabriel Scatolino!</p>
+              </div>
+              <div class="card">
+                <p class="card-label">Sua próxima viagem:</p>
+                <div class="card-itens">
+                  <p><strong>Destino: </strong>Brasília, DF</p>
+                  <p><strong>Data da prova: </strong>10/05/2026 às 14:00</p>
+                  <p><strong>Concurso: </strong>Concurso Público Prefeitura de Florianópolis 2026</p>
+                  <p><strong>Preferência: </strong>Público</p>
+                  <p><strong>Cargo: </strong>Analista Administrativo</p>
+                </div>
+              </div>
+              <div class="btn-center">
+                <button type="button" onclick="App.ir('cadastrar_viagem')">Cadastrar Viagem</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ══ TELA: CADASTRAR VIAGEM ══ -->
+          <section id="tela_cadastrar_viagem" class="tela tem-nav">
+            <div class="tela-inner">
+              <div class="tela-top-row">
+                <button class="btn-voltar" type="button" onclick="App.voltar()">&#8592;</button>
+                <div>
+                  <p class="tela-titulo">Cadastrar Viagem</p>
+                  <p class="tela-sub">Preencha os dados da sua próxima jornada</p>
+                </div>
+              </div>
+              <form id="form-viagem" onsubmit="App.cadastrarViagem(event)">
+                <div class="campo-grupo">
+                  <label for="origem">Origem</label>
+                  <input type="text" id="origem" placeholder="Cidade de saída (ex: São Paulo, SP)" required />
+                </div>
+                <div class="campo-grupo">
+                  <label for="destino">Destino</label>
+                  <input type="text" id="destino" placeholder="Cidade do certame (ex: Florianópolis, SC)" required />
+                </div>
+                <div class="campo-grupo">
+                  <label for="data_viagem">Data da Viagem</label>
+                  <input type="date" id="data_viagem" required />
+                </div>
+                <div class="campo-grupo">
+                  <label for="concurso">Concurso</label>
+                  <input type="text" id="concurso" placeholder="Nome do concurso" required />
+                </div>
+                <div class="campo-grupo">
+                  <label for="cargo">Cargo Concorrido</label>
+                  <input type="text" id="cargo" placeholder="Ex: Analista Administrativo" required />
+                </div>
+                <div class="campo-grupo">
+                  <label for="data_prova">Data da Prova</label>
+                  <input type="date" id="data_prova" required />
+                </div>
+                <button type="submit">Cadastrar</button>
+              </form>
+            </div>
+          </section>
+
+          <!-- ══ TELA: CONEXÕES ══ -->
+          <section id="tela_conexoes" class="tela tem-nav">
+            <div class="tela-inner">
+              <div class="tela-header-bloco">
+                <h1>Conexões</h1>
+                <p>Conecte-se com outros concurseiros</p>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn-sec">Ver pessoas no mesmo concurso</button>
+                <button type="button" class="btn-sec">Ver quem está por perto</button>
+              </div>
+              <div class="card">
+                <h2>Chats</h2>
+                <div class="card-item">
+                  <p><strong>João Silva</strong></p>
+                  <p>Última mensagem: Boa sorte na prova!</p>
+                </div>
+                <div class="card-item">
+                  <p><strong>Maria Souza</strong></p>
+                  <p>Última mensagem: Vai estudar hoje?</p>
+                </div>
+                <div class="card-item">
+                  <p><strong>Carlos Lima</strong></p>
+                  <p>Última mensagem: Qual material você está usando?</p>
+                </div>
+              </div>
+              <div class="card">
+                <h2>Fóruns de Concursos</h2>
+                <div class="card-item">
+                  <p><strong>Prefeitura de Florianópolis 2026</strong></p>
+                  <p>Discussões sobre edital, provas e dicas</p>
+                  <button type="button" class="btn-sm btn-sec">Acessar fórum</button>
+                </div>
+                <div class="card-item">
+                  <p><strong>Banco do Brasil 2026</strong></p>
+                  <p>Dúvidas, conteúdos e preparação</p>
+                  <button type="button" class="btn-sm btn-sec">Acessar fórum</button>
+                </div>
+                <div class="card-item">
+                  <p><strong>INSS 2026</strong></p>
+                  <p>Troca de materiais e experiências</p>
+                  <button type="button" class="btn-sm btn-sec">Acessar fórum</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ══ TELA: BUSCAR ══ -->
+          <section id="tela_buscar" class="tela tem-nav">
+            <div class="tela-inner">
+              <div class="tela-header-bloco">
+                <h1>Buscar</h1>
+                <p>Encontre concursos, fóruns ou conexões</p>
+              </div>
+              <div class="area-pesquisa">
+                <form onsubmit="App.buscar(event)">
+                  <label for="campo-busca">O que você procura?</label>
+                  <input type="search" id="campo-busca" required />
+                  <button type="submit">Pesquisar</button>
+                </form>
+              </div>
+              <div class="card resultados-sugestoes">
+                <h2>Buscas Recentes</h2>
+                <ul>
+                  <li><a href="#">Prefeitura de Florianópolis 2026</a></li>
+                  <li><a href="#">Analista Administrativo</a></li>
+                  <li><a href="#">Banco do Brasil</a></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ══ TELA: CONFIGURAÇÕES ══ -->
+          <section id="tela_configuracoes" class="tela tem-nav">
+            <div class="tela-inner">
+              <header class="header-PERFIL">
+                <div class="avatar-container">
+                  <span class="avatar-circulo" aria-label="Foto de Perfil do Usuário">Foto Usuário</span>
+                  <button class="editar-btn" type="button" aria-label="Alterar Foto de Perfil">Alterar Foto</button>
+                </div>
+                <div class="info-usuario">
+                  <h1 class="nome-usuario">Gabriel Scatolino</h1>
+                  <p class="email-usuario">gabrielscatolino@gmail.com</p>
+                </div>
+                <button class="editar-perfil" type="button" onclick="App.ir('perfil')">Editar Perfil</button>
+              </header>
+              <section class="card-config">
+                <h2 class="card-titulo">Configurações de Conta</h2>
+                <ul class="lista-config">
+                  <li class="item-config">
+                    <a href="#" onclick="App.ir('recuperar_senha'); return false;" class="link-config">
+                      <span class="link-text">Alterar Senha</span>
+                    </a>
+                  </li>
+                </ul>
+              </section>
+              <section class="card-config">
+                <h2 class="card-titulo">Atividade</h2>
+                <ul class="lista-config">
+                  <li class="item-config">
+                    <a href="#" class="link-config"><span class="link-text">Histórico de Atividade</span></a>
+                  </li>
+                </ul>
+              </section>
+              <section class="card-config">
+                <h2 class="card-titulo">Outras Opções</h2>
+                <ul class="lista-config">
+                  <li class="item-config">
+                    <a href="#" class="link-config"><span class="link-text">Notificações</span></a>
+                  </li>
+                  <li class="item-config">
+                    <a href="#" class="link-config"><span class="link-text">Ajuda & Suporte</span></a>
+                  </li>
+                </ul>
+              </section>
+              <section class="card-config">
+                <ul class="lista-config">
+                  <li class="item-config">
+                    <button type="button" class="logout-btn" onclick="App.logout()">
+                      <span class="link-text">Sair</span>
+                    </button>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </section>
+
+          <!-- ══ TELA: PERFIL ══ -->
+          <section id="tela_perfil" class="tela tem-nav">
+            <div class="tela-inner">
+              <div class="tela-header-bloco">
+                <h1>Perfil</h1>
+                <p>Suas informações</p>
+              </div>
+              <div class="card">
+                <p><strong>Nome:</strong> Gabriel Scatolino <button type="button" class="btn-sm btn-sec">Editar</button></p>
+                <p><strong>Idade:</strong> 21 anos <button type="button" class="btn-sm btn-sec">Editar</button></p>
+                <p><strong>Concursos realizados:</strong> 8 <button type="button" class="btn-sm btn-sec">Editar</button></p>
+                <p><strong>Conexões:</strong> 15</p>
+              </div>
+              <div class="card">
+                <h2>Sobre</h2>
+                <p>
+                  Estudante focado em concursos públicos na área administrativa.
+                  Buscando conexão com outros candidatos para troca de experiências.
+                  <button type="button" class="btn-sm btn-sec">Editar</button>
+                </p>
+              </div>
+              <div class="card">
+                <h2>Privacidade</h2>
+                <div class="privacidade-opcao">
+                  <label>
+                    <input type="radio" name="privacidade" checked />
+                    Perfil Público
+                  </label>
+                  <p>Qualquer usuário pode ver seu perfil e te encontrar.</p>
+                </div>
+                <div class="privacidade-opcao">
+                  <label>
+                    <input type="radio" name="privacidade" />
+                    Perfil Privado
+                  </label>
+                  <p>Apenas conexões aprovadas podem ver suas informações.</p>
+                </div>
+              </div>
+              <div class="btn-center">
+                <button class="editar-btn" type="button" onclick="App.ir('configuracoes')">Salvar alterações</button>
+              </div>
+            </div>
+          </section>
+
+        </div><!-- /app-viewport -->
+
+        <!-- ══ BOTTOM NAV (fixo dentro do phone-screen) ══ -->
+        <footer class="bottom-nav" id="bottom-nav">
+          <nav aria-label="Navegação principal">
+            <ul class="nav-lista">
+              <li><button id="nav-home"          onclick="App.ir('home')">Home</button></li>
+              <li><button id="nav-conexoes"       onclick="App.ir('conexoes')">Conexões</button></li>
+              <li><button id="nav-buscar"          onclick="App.ir('buscar')">Buscar</button></li>
+              <li><button id="nav-configuracoes"   onclick="App.ir('configuracoes')">Config.</button></li>
+            </ul>
+          </nav>
+          <div class="home-indicator"></div>
+        </footer>
+
+      </div><!-- /iphone-screen -->
+    </div><!-- /iphone -->
+  </div><!-- /desktop-bg -->
+
+  <script src="script.js"></script>
+</body>
+</html>
