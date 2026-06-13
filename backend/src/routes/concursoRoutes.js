@@ -1,18 +1,18 @@
 import { Router } from 'express';
 import {
-  createEdital,
-  getAllEditais,
-  getEditalById,
-  updateEdital,
-  deleteEdital
+  createConcurso,
+  getAllConcursos,
+  getConcursoById,
+  updateConcurso,
+  deleteConcurso
 } from '../controllers/concursoController.js';
 
 const router = Router();
 
-router.post('/editais', createEdital);
-router.get('/editais', getAllEditais);
-router.get('/editais/:id', getEditalById);
-router.put('/editais/:id', updateEdital);
-router.delete('/editais/:id', deleteEdital);
+router.post('/editais', createConcurso);
+router.get('/editais', getAllConcursos);
+router.get('/editais/:id', getConcursoById);
+router.put('/editais/:id', updateConcurso);
+router.delete('/editais/:id', deleteConcurso);
 
 export default router;

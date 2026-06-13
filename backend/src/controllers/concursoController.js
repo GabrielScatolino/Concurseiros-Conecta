@@ -43,9 +43,9 @@ const buildConcursoData = ({
 export const createConcurso = async (req, res) => {
   try {
     const {
-      cargo = title,
-      local = description,
-      data = examDate,
+      cargo,
+      local,
+      data,
       url_edital,
       qtd_candidatos,
       id_banca
@@ -136,11 +136,47 @@ export const getConcursoById = async (req, res) => {
   try {
     const id_concurso = parseId(req.params.id_concurso || req.params.id);
 
+    const concurso = await prisma.concurso.findUnique({
+      where: { id_concurso },
+      select: {
+        id_concurso: true,
+        id_banca: true,
+        cargo: true,
+        local: true,
+        data: true,
+        url_edital: true,
+        qtd_candidatos: true,
+        bancaRef: {
+          select: {
+            id_banca: true,
+            nome: true,
+          },
+        },
+      },
+    });
+
+    if (!concurso) {
+      return res.status(404).json({ error: 'Concurso não encontrado' });
+    }
+
+    return res.status(200).json(concurso);
+  } catch (error) {
+    if (error.statusCode) {
+      return res.status(error.statusCode).json({ error: error.message });
+    }
+
+    return res.status(500).json({ error: 'Erro ao buscar concurso', details: error.message });
+  }
+};
+
+export const updateConcurso = async (req, res) => {
+  try {
+    const id_concurso = parseId(req.params.id_concurso || req.params.id);
+
     const {
-      cargo = title,
-      banca,
-      local = description,
-      data = examDate,
+      cargo,
+      local,
+      data,
       url_edital,
       qtd_candidatos,
       id_banca
@@ -149,7 +185,6 @@ export const getConcursoById = async (req, res) => {
     const dataToUpdate = {};
 
     if (cargo !== undefined) dataToUpdate.cargo = cargo;
-    if (banca !== undefined) dataToUpdate.banca = banca;
     if (local !== undefined) dataToUpdate.local = local;
     if (data !== undefined) dataToUpdate.data = parseDate(data);
     if (url_edital !== undefined) dataToUpdate.url_edital = url_edital;
@@ -180,7 +215,6 @@ export const getConcursoById = async (req, res) => {
         id_concurso: true,
         id_banca: true,
         cargo: true,
-        banca: true,
         local: true,
         data: true,
         url_edital: true,
@@ -224,4 +258,4 @@ export const deleteConcurso = async (req, res) => {
 
     return res.status(500).json({ error: 'Erro ao deletar concurso', details: error.message });
   }
-};f
+};

@@ -3,6 +3,7 @@ node_modules/
 
 # Variáveis de ambiente e credenciais locais (segurança em primeiro lugar!)
 .env
+.env.example
 .env.local
 
 # Arquivos de log de erros
@@ -14,3 +15,6 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 .vscode
+
+#arquivos temporários de diagnóstico.
+scripts/

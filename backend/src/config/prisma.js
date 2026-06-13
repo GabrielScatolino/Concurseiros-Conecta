@@ -1,15 +1,19 @@
+import 'dotenv/config';
 import pg from 'pg';
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
-import dotenv from 'dotenv';
 
-dotenv.config();
+const url = new URL(process.env.DATABASE_URL);
 
-// Cria a conexão nativa com o Postgres usando a URL do .env
-const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const pool = new pg.Pool({
+  host: url.hostname,
+  port: Number(url.port),
+  user: url.username,
+  password: url.password,
+  database: url.pathname.slice(1),
+});
+
 const adapter = new PrismaPg(pool);
-
-// Inicializa o Prisma passando o adaptador moderno
 const prisma = new PrismaClient({ adapter });
 
 export default prisma;

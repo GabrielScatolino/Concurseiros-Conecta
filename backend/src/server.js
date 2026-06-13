@@ -1,10 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import editalRoutes from './routes/concursoRoutes.js';
-import userRoutes from './routes/userRoutes.js'; // IMPORTADO AQUI
-
-dotenv.config();
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,11 +9,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Registrando os dois endpoints da nossa API
 app.use('/api', editalRoutes);
-app.use('/api', userRoutes); // ADICIONADO AQUI
+app.use('/api', userRoutes);
 
-// Rota base de teste
 app.get('/', (req, res) => {
   res.send('🚀 Backend do Concurseiro Conecta rodando!');
 });
