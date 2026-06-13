@@ -13,3 +13,4 @@ yarn-error.log*
 # Pastas geradas pelo sistema operacional (opcional, mas bom ter)
 .DS_Store
 Thumbs.db
+.vscode

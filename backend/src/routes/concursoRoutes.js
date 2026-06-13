@@ -5,7 +5,7 @@ import {
   getEditalById,
   updateEdital,
   deleteEdital
-} from '../controllers/editalController.js';
+} from '../controllers/concursoController.js';
 
 const router = Router();
 

@@ -6,21 +6,50 @@ datasource db {
   provider = "postgresql"
 }
 
-// Modelo de Usuário (CRUD 1)
-model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+model Usuario {
+  id_usuario         Int                  @id @default(autoincrement()) @map("id_usuario")
+  cpf                String               @unique(map: "usuarios_cpf_key") @db.Char(11)
+  nome               String               @db.VarChar(150)
+  email              String               @unique(map: "usuarios_email_key") @db.VarChar(150)
+  senha              String               @db.VarChar(255)
+  data_cadastro      DateTime?            @default(now())
+  cidade             String?              @db.VarChar(100)
+  estado             String?              @db.Char(2)
+  perfil_publico     Boolean?             @default(true)
+  candidatosConcurso CandidatosConcurso[]
+
+  @@map("usuarios")
 }
 
-// Modelo de Edital (CRUD 2)
-model Edital {
-  id          String   @id @default(uuid())
-  title       String
-  banca       String
-  description String?
-  examDate    DateTime?
-  createdAt   DateTime @default(now())
+model Banca {
+  id_banca  Int        @id @default(autoincrement()) @map("id_banca")
+  nome      String     @unique(map: "bancas_nome_key") @db.VarChar(100)
+  concursos Concurso[]
+
+  @@map("bancas")
+}
+
+model Concurso {
+  id_concurso        Int                  @id @default(autoincrement()) @map("id_concurso")
+  id_banca           Int                  @map("id_banca")
+  cargo              String               @db.VarChar(150)
+  local              String?              @db.VarChar(150)
+  data               DateTime?            @db.Date()
+  url_edital         String?              @db.VarChar(255)
+  qtd_candidatos     Int?                 @default(0)
+  bancaRef           Banca                @relation(fields: [id_banca], references: [id_banca], onUpdate: Cascade, onDelete: Restrict, map: "fk_concurso_banca")
+  candidatosConcurso CandidatosConcurso[]
+
+  @@map("concurso")
+}
+
+model CandidatosConcurso {
+  id_usuario     Int       @map("id_usuario")
+  id_concurso    Int       @map("id_concurso")
+  data_inscricao DateTime? @default(now())
+  usuario        Usuario   @relation(fields: [id_usuario], references: [id_usuario], onUpdate: Cascade, onDelete: Cascade, map: "fk_candidatos_usuario")
+  concurso       Concurso  @relation(fields: [id_concurso], references: [id_concurso], onUpdate: Cascade, onDelete: Cascade, map: "fk_candidatos_concurso")
+
+  @@id([id_usuario, id_concurso])
+  @@map("candidatos_concurso")
 }

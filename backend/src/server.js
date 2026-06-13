@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import editalRoutes from './routes/editalRoutes.js';
+import editalRoutes from './routes/concursoRoutes.js';
 import userRoutes from './routes/userRoutes.js'; // IMPORTADO AQUI
 
 dotenv.config();
