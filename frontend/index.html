@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Concurseiros Conecta</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -160,104 +161,83 @@
                 <h1>Home</h1>
                 <p>Olá, Gabriel Scatolino!</p>
               </div>
-              <div class="card">
-                <p class="card-label">Sua próxima viagem:</p>
-                <div class="card-itens">
-                  <p><strong>Destino: </strong>Brasília, DF</p>
-                  <p><strong>Data da prova: </strong>10/05/2026 às 14:00</p>
-                  <p><strong>Concurso: </strong>Concurso Público Prefeitura de Florianópolis 2026</p>
-                  <p><strong>Preferência: </strong>Público</p>
-                  <p><strong>Cargo: </strong>Analista Administrativo</p>
-                </div>
+
+              <div style="margin: 40px 0; text-align: center;">
+                <p style="font-size: 1.1rem; color: #555;">Cadastre um novo concurso no botão abaixo</p>
               </div>
+
               <div class="btn-center">
-                <button type="button" onclick="App.ir('cadastrar_viagem')">Cadastrar Viagem</button>
+                <button type="button" onclick="App.ir('cadastrar_concurso')">Cadastrar Concurso</button>
               </div>
             </div>
           </section>
 
           <!-- ══ TELA: CADASTRAR VIAGEM ══ -->
-          <section id="tela_cadastrar_viagem" class="tela tem-nav">
+          <section id="tela_cadastrar_concurso" class="tela tem-nav">
             <div class="tela-inner">
               <div class="tela-top-row">
                 <button class="btn-voltar" type="button" onclick="App.voltar()">&#8592;</button>
                 <div>
-                  <p class="tela-titulo">Cadastrar Viagem</p>
-                  <p class="tela-sub">Preencha os dados da sua próxima jornada</p>
+                  <p class="tela-titulo">Cadastrar Concurso</p>
+                  <p class="tela-sub">Preencha os dados do novo certame</p>
                 </div>
               </div>
-              <form id="form-viagem" onsubmit="App.cadastrarViagem(event)">
-                <div class="campo-grupo">
-                  <label for="origem">Origem</label>
-                  <input type="text" id="origem" placeholder="Cidade de saída (ex: São Paulo, SP)" required />
-                </div>
-                <div class="campo-grupo">
-                  <label for="destino">Destino</label>
-                  <input type="text" id="destino" placeholder="Cidade do certame (ex: Florianópolis, SC)" required />
-                </div>
-                <div class="campo-grupo">
-                  <label for="data_viagem">Data da Viagem</label>
-                  <input type="date" id="data_viagem" required />
-                </div>
-                <div class="campo-grupo">
-                  <label for="concurso">Concurso</label>
-                  <input type="text" id="concurso" placeholder="Nome do concurso" required />
-                </div>
+
+              <form id="form-concurso" onsubmit="App.cadastrarConcurso(event)">
                 <div class="campo-grupo">
                   <label for="cargo">Cargo Concorrido</label>
-                  <input type="text" id="cargo" placeholder="Ex: Analista Administrativo" required />
+                  <input type="text" id="cargo" required />
                 </div>
+
+                <div class="campo-grupo">
+                  <label for="banca">Id da Banca Organizadora</label>
+                  <input type="text" id="banca" required />
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="local">Local de Aplicação</label>
+                  <input type="text" id="local" required />
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="url_edital">URL do Edital</label>
+                  <input type="url" id="url_edital" placeholder="https://exemplo.com/edital" required />
+                </div>
+
                 <div class="campo-grupo">
                   <label for="data_prova">Data da Prova</label>
                   <input type="date" id="data_prova" required />
                 </div>
+
+
+
                 <button type="submit">Cadastrar</button>
               </form>
             </div>
           </section>
 
-          <!-- ══ TELA: CONEXÕES ══ -->
-          <section id="tela_conexoes" class="tela tem-nav">
+          <!-- ══ TELA: CONCURSOS ══ -->
+          <section id="tela_concursos" class="tela tem-nav">
             <div class="tela-inner">
               <div class="tela-header-bloco">
-                <h1>Conexões</h1>
+                <h1>Concursos</h1>
                 <p>Conecte-se com outros concurseiros</p>
               </div>
+
               <div class="btn-group">
-                <button type="button" class="btn-sec">Ver pessoas no mesmo concurso</button>
-                <button type="button" class="btn-sec">Ver quem está por perto</button>
+                <div class="busca-id">
+                  <input type="text" id="input-busca-id" placeholder="Buscar concurso por ID">
+                  <button type="button" id="btn-buscar-id" class="btn-sec">Buscar</button>
+                </div>
+
+
+                <button type="button" id="btn-ver-todos" class="btn-sec"
+                  style="width: 100%; height: 35px; box-sizing: border-box;">Ver todos os concursos cadastrados</button>
               </div>
+
               <div class="card">
-                <h2>Chats</h2>
-                <div class="card-item">
-                  <p><strong>João Silva</strong></p>
-                  <p>Última mensagem: Boa sorte na prova!</p>
-                </div>
-                <div class="card-item">
-                  <p><strong>Maria Souza</strong></p>
-                  <p>Última mensagem: Vai estudar hoje?</p>
-                </div>
-                <div class="card-item">
-                  <p><strong>Carlos Lima</strong></p>
-                  <p>Última mensagem: Qual material você está usando?</p>
-                </div>
-              </div>
-              <div class="card">
-                <h2>Fóruns de Concursos</h2>
-                <div class="card-item">
-                  <p><strong>Prefeitura de Florianópolis 2026</strong></p>
-                  <p>Discussões sobre edital, provas e dicas</p>
-                  <button type="button" class="btn-sm btn-sec">Acessar fórum</button>
-                </div>
-                <div class="card-item">
-                  <p><strong>Banco do Brasil 2026</strong></p>
-                  <p>Dúvidas, conteúdos e preparação</p>
-                  <button type="button" class="btn-sm btn-sec">Acessar fórum</button>
-                </div>
-                <div class="card-item">
-                  <p><strong>INSS 2026</strong></p>
-                  <p>Troca de materiais e experiências</p>
-                  <button type="button" class="btn-sm btn-sec">Acessar fórum</button>
+                <div id="concursos-container">
+                  <!-- Os boxes de concurso serão injetados aqui -->
                 </div>
               </div>
             </div>
@@ -356,7 +336,7 @@
                 <p><strong>Idade:</strong> 21 anos <button type="button" class="btn-sm btn-sec">Editar</button></p>
                 <p><strong>Concursos realizados:</strong> 8 <button type="button" class="btn-sm btn-sec">Editar</button>
                 </p>
-                <p><strong>Conexões:</strong> 15</p>
+                <p><strong>Concursos:</strong> 15</p>
               </div>
               <div class="card">
                 <h2>Sobre</h2>
@@ -396,7 +376,7 @@
           <nav aria-label="Navegação principal">
             <ul class="nav-lista">
               <li><button id="nav-home" onclick="App.ir('home')">Home</button></li>
-              <li><button id="nav-conexoes" onclick="App.ir('conexoes')">Conexões</button></li>
+              <li><button id="nav-conexoes" onclick="App.ir('concursos')">Concursos</button></li>
               <li><button id="nav-buscar" onclick="App.ir('buscar')">Buscar</button></li>
               <li><button id="nav-configuracoes" onclick="App.ir('configuracoes')">Config.</button></li>
             </ul>
@@ -407,8 +387,6 @@
       </div><!-- /iphone-screen -->
     </div><!-- /iphone -->
   </div><!-- /desktop-bg -->
-
-  <script src="script.js"></script>
 </body>
 
 </html>

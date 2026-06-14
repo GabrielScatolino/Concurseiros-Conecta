@@ -30,14 +30,12 @@ const buildConcursoData = ({
   cargo,
   local,
   data,
-  url_edital,
-  qtd_candidatos
+  url_edital
 }) => ({
   cargo,
   local: local ?? null,
   data: parseDate(data),
   url_edital: url_edital ?? null,
-  qtd_candidatos: qtd_candidatos ?? 0,
 });
 
 export const createConcurso = async (req, res) => {
@@ -47,7 +45,6 @@ export const createConcurso = async (req, res) => {
       local,
       data,
       url_edital,
-      qtd_candidatos,
       id_banca
     } = req.body;
 
@@ -72,7 +69,6 @@ export const createConcurso = async (req, res) => {
           local,
           data,
           url_edital,
-          qtd_candidatos,
         }),
         id_banca: bancaId,
       },
@@ -83,7 +79,6 @@ export const createConcurso = async (req, res) => {
         local: true,
         data: true,
         url_edital: true,
-        qtd_candidatos: true,
         bancaRef: {
           select: {
             id_banca: true,
@@ -113,7 +108,6 @@ export const getAllConcursos = async (req, res) => {
         local: true,
         data: true,
         url_edital: true,
-        qtd_candidatos: true,
         bancaRef: {
           select: {
             id_banca: true,
@@ -145,7 +139,6 @@ export const getConcursoById = async (req, res) => {
         local: true,
         data: true,
         url_edital: true,
-        qtd_candidatos: true,
         bancaRef: {
           select: {
             id_banca: true,
@@ -178,7 +171,6 @@ export const updateConcurso = async (req, res) => {
       local,
       data,
       url_edital,
-      qtd_candidatos,
       id_banca
     } = req.body;
 
@@ -188,7 +180,6 @@ export const updateConcurso = async (req, res) => {
     if (local !== undefined) dataToUpdate.local = local;
     if (data !== undefined) dataToUpdate.data = parseDate(data);
     if (url_edital !== undefined) dataToUpdate.url_edital = url_edital;
-    if (qtd_candidatos !== undefined) dataToUpdate.qtd_candidatos = qtd_candidatos;
 
     if (id_banca !== undefined) {
       const bancaId = parseId(id_banca);
@@ -218,7 +209,6 @@ export const updateConcurso = async (req, res) => {
         local: true,
         data: true,
         url_edital: true,
-        qtd_candidatos: true,
         bancaRef: {
           select: {
             id_banca: true,
