@@ -598,3 +598,65 @@ button:active { opacity: 0.85; transform: scale(0.98); }
 #btn-buscar-id {
   background: var(--cor-destaque);
 }
+
+/* ═══════════════════════════════════════════════
+   CONCURSOS
+═══════════════════════════════════════════════ */
+.concurso-card {
+  background: var(--cor-branco);
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  border: 0.5px solid var(--cor-borda);
+  margin-bottom: 0.75rem;
+}
+
+.concurso-card:last-child {
+  margin-bottom: 0;
+}
+
+.concurso-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-principal);
+  margin-bottom: 0.5rem;
+}
+
+.concurso-card p {
+  font-size: 0.82rem;
+  color: var(--cor-texto);
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+}
+
+.concurso-card p:last-child {
+  margin-bottom: 0;
+}
+
+.concurso-card a {
+  color: var(--cor-secundaria);
+  text-decoration: underline;
+}
+
+.card-acoes {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.card-acoes button {
+  flex: 1 1 50%;
+  min-width: 0;
+  padding: 0.55rem 0.5rem;
+  font-size: 0.82rem;
+  border-radius: 8px;
+}
+
+.btn-editar {
+  background: #34C759;
+  color: var(--cor-branco);
+}
+
+.btn-excluir {
+  background: var(--cor-destaque);
+  color: var(--cor-branco);
+}

@@ -1,0 +1,1 @@
+INSERT INTO bancas (nome) VALUES ('FGV'), ('Cebrasp'), ('FCC');

@@ -9,10 +9,10 @@ import {
 
 const router = Router();
 
-router.post('/editais', createConcurso);
-router.get('/editais', getAllConcursos);
-router.get('/editais/:id', getConcursoById);
-router.put('/editais/:id', updateConcurso);
-router.delete('/editais/:id', deleteConcurso);
+router.post('/concursos', createConcurso);
+router.get('/concursos', getAllConcursos);
+router.get('/concursos/:id', getConcursoById);
+router.put('/concursos/:id', updateConcurso);
+router.delete('/concursos/:id', deleteConcurso);
 
 export default router;
