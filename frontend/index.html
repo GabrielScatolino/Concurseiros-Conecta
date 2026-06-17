@@ -172,7 +172,7 @@
             </div>
           </section>
 
-          <!-- ══ TELA: CADASTRAR VIAGEM ══ -->
+          <!-- ══ TELA: CADASTRAR CONCURSO ══ -->
           <section id="tela_cadastrar_concurso" class="tela tem-nav">
             <div class="tela-inner">
               <div class="tela-top-row">
@@ -238,6 +238,50 @@
                   <!-- Os boxes de concurso serão injetados aqui -->
                 </div>
               </div>
+            </div>
+          </section>
+
+          <!-- ══ TELA: EDITAR CONCURSO ══ -->
+          <section id="tela_editar_concurso" class="tela tem-nav">
+            <div class="tela-inner">
+              <div class="tela-top-row">
+                <button class="btn-voltar" type="button" onclick="App.voltar()">&#8592;</button>
+                <div>
+                  <p class="tela-titulo">Editar Concurso</p>
+                  <p class="tela-sub">Altere os dados do Concurso</p>
+                </div>
+              </div>
+
+              <form id="form-editar-concurso" onsubmit="App.salvarEdicao(event)">
+                <input type="hidden" id="editar_id_concurso" />
+
+                <div class="campo-grupo">
+                  <label for="editar_cargo">Cargo Concorrido</label>
+                  <input type="text" id="editar_cargo" required />
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="editar_banca">Id da Banca Organizadora</label>
+                  <input type="text" id="editar_banca" required />
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="editar_local">Local de Aplicação</label>
+                  <input type="text" id="editar_local" required />
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="editar_url_edital">URL do Edital</label>
+                  <input type="url" id="editar_url_edital" required />
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="editar_data_prova">Data da Prova</label>
+                  <input type="date" id="editar_data_prova" required />
+                </div>
+
+                <button type="submit">Salvar Alterações</button>
+              </form>
             </div>
           </section>
 

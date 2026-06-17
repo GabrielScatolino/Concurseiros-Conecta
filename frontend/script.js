@@ -11,6 +11,7 @@ const App = (() => {
     cadastrar_concurso: 'tela_cadastrar_concurso',
     concursos: 'tela_concursos',
     buscar: 'tela_buscar',
+    editar_concurso: 'tela_editar_concurso',
     configuracoes: 'tela_configuracoes',
     perfil: 'tela_perfil',
   };
@@ -114,13 +115,6 @@ const App = (() => {
     }
   }
 
-  function buscar(e) {
-    e.preventDefault();
-    const termo = document.getElementById('campo-busca').value.trim();
-    if (!termo) return;
-    alert(`Buscando por: "${termo}"`);
-  }
-
   async function verTodosConcursos() {
     try {
       const resposta = await fetch('http://localhost:3000/api/concursos');
@@ -191,6 +185,13 @@ const App = (() => {
     });
   }
 
+  function buscar(e) {
+    e.preventDefault();
+    const termo = document.getElementById('campo-busca').value.trim();
+    if (!termo) return;
+    alert(`Buscando por: "${termo}"`);
+  }
+
   async function buscarConcursoPorId() {
     const id = document.getElementById('input-busca-id').value.trim();
 
@@ -207,27 +208,48 @@ const App = (() => {
         throw new Error(dados.error || 'Concurso não encontrado.');
       }
 
-      const container = document.getElementById('concursos-container');
-      container.innerHTML = '';
-
-      const card = document.createElement('div');
-      card.className = 'concurso-card';
-
-      card.innerHTML = `
-        <h3>${dados.cargo}</h3>
-        <p><strong>ID:</strong> ${dados.id_concurso}</p>
-        <p><strong>Banca:</strong> ${dados.bancaRef ? dados.bancaRef.nome : 'N/A'}</p>
-        <p><strong>Local:</strong> ${dados.local || 'N/A'}</p>
-        <p><strong>Data:</strong> ${dados.data ? new Date(dados.data).toLocaleDateString('pt-BR') : 'N/A'}</p>
-        <p><strong>Edital:</strong> ${dados.url_edital ? '<a href="' + dados.url_edital + '" target="_blank">Link</a>' : 'N/A'}</p>
-        <div class="card-acoes">
-          <button type="button" class="btn-editar" data-id="${dados.id_concurso}">Editar</button>
-          <button type="button" class="btn-excluir" data-id="${dados.id_concurso}">Excluir</button>
-        </div>
-      `;
-
-      container.appendChild(card);
+      renderizarConcursos([dados]);
       alert('Concurso encontrado!');
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
+
+  async function salvarEdicao(e) {
+    e.preventDefault();
+    const id = document.getElementById('editar_id_concurso').value.trim();
+    const cargo = document.getElementById('editar_cargo').value.trim();
+    const banca = document.getElementById('editar_banca').value.trim();
+    const local = document.getElementById('editar_local').value.trim();
+    const urlEdital = document.getElementById('editar_url_edital').value.trim();
+    const dataProva = document.getElementById('editar_data_prova').value;
+
+    if (!cargo || !banca || !local || !dataProva || !urlEdital) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/concursos/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cargo,
+          id_banca: banca,
+          local,
+          url_edital: urlEdital,
+          data: dataProva,
+        }),
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.error || 'Erro ao salvar alterações.');
+      }
+
+      alert('Concurso atualizado com sucesso!');
+      ir('concursos');
     } catch (erro) {
       alert(erro.message);
     }
@@ -250,14 +272,24 @@ const App = (() => {
       btnBuscarId.addEventListener('click', buscarConcursoPorId);
     }
 
-    document.addEventListener('click', function(evento) {
+    document.addEventListener('click', function (evento) {
       if (evento.target.classList.contains('btn-excluir')) {
         const id = evento.target.getAttribute('data-id');
         if (id) excluirConcurso(id);
       }
     });
+
+    document.addEventListener('click', function (evento) {
+      if (evento.target.classList.contains('btn-editar')) {
+        const id = evento.target.getAttribute('data-id');
+        if (id) {
+          document.getElementById('editar_id_concurso').value = id;
+          ir('editar_concurso');
+        }
+      }
+    });
   });
 
-  return { ir, voltar, logout, cadastrarConcurso, buscar, verTodosConcursos, buscarConcursoPorId, excluirConcurso };
+  return { ir, voltar, logout, cadastrarConcurso, buscar, verTodosConcursos, buscarConcursoPorId, excluirConcurso, salvarEdicao };
 
 })();
