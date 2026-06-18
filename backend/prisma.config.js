@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 export default {
-  db: {
+  datasource: {
     url: process.env.DATABASE_URL,
   },
 };
