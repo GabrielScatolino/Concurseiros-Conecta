@@ -280,25 +280,26 @@ const App = (() => {
     const urlEdital = document.getElementById('url_edital').value.trim();
     const dataProva = document.getElementById('data_prova').value;
 
+    console.log('[Cadastrar Concurso] Dados do formulário:', { cargo, id_banca: banca, local, url_edital: urlEdital, data: dataProva });
+
     if (!cargo || !banca || !local || !dataProva || !urlEdital) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
 
     try {
+      const body = { cargo, id_banca: banca, local, url_edital: urlEdital, data: dataProva };
+      console.log('[Cadastrar Concurso] Enviando POST /api/concursos:', body);
+
       const resposta = await fetch('http://localhost:3000/api/concursos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          cargo,
-          id_banca: banca,
-          local,
-          url_edital: urlEdital,
-          data: dataProva,
-        }),
+        body: JSON.stringify(body),
       });
 
+      console.log('[Cadastrar Concurso] Resposta HTTP:', resposta.status);
       const dados = await resposta.json();
+      console.log('[Cadastrar Concurso] Dados retornados:', dados);
 
       if (!resposta.ok) {
         throw new Error(dados.error || 'Erro ao cadastrar concurso.');
@@ -308,14 +309,18 @@ const App = (() => {
       document.getElementById('form-concurso').reset();
       ir('home');
     } catch (erro) {
+      console.error('[Cadastrar Concurso] Erro:', erro.message);
       alert(erro.message);
     }
   }
 
   async function verTodosConcursos() {
+    console.log('[Listar Concursos] Buscando todos os concursos...');
     try {
       const resposta = await fetch('http://localhost:3000/api/concursos');
+      console.log('[Listar Concursos] Resposta HTTP:', resposta.status);
       const dados = await resposta.json();
+      console.log('[Listar Concursos] Dados retornados:', dados);
 
       if (!resposta.ok) {
         throw new Error(dados.error || 'Erro ao buscar concursos.');
@@ -334,6 +339,7 @@ const App = (() => {
   }
 
   async function excluirConcurso(id) {
+    console.log('[Excluir Concurso] ID recebido:', id);
     if (!confirm('Deseja realmente excluir este concurso?')) return;
 
     try {
@@ -341,7 +347,9 @@ const App = (() => {
         method: 'DELETE',
       });
 
+      console.log('[Excluir Concurso] Resposta HTTP:', resposta.status);
       const dados = await resposta.json();
+      console.log('[Excluir Concurso] Dados retornados:', dados);
 
       if (!resposta.ok) {
         throw new Error(dados.error || 'Erro ao excluir concurso.');
@@ -392,6 +400,8 @@ const App = (() => {
   async function buscarConcursoPorId() {
     const id = document.getElementById('input-busca-id').value.trim();
 
+    console.log('[Buscar Concurso] ID digitado:', id);
+
     if (!id) {
       alert('Informe o ID do concurso.');
       return;
@@ -399,7 +409,9 @@ const App = (() => {
 
     try {
       const resposta = await fetch('http://localhost:3000/api/concursos/' + id);
+      console.log('[Buscar Concurso] Resposta HTTP:', resposta.status);
       const dados = await resposta.json();
+      console.log('[Buscar Concurso] Dados retornados:', dados);
 
       if (!resposta.ok) {
         throw new Error(dados.error || 'Concurso não encontrado.');
