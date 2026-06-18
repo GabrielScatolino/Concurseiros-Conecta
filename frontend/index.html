@@ -75,7 +75,7 @@
               <label for="login-senha">Senha</label>
               <input type="password" id="login-senha" placeholder="••••••••" autocomplete="current-password" />
             </div>
-            <button onclick="App.ir('home')">Entrar</button>
+            <button type="button" onclick="App.login()">Entrar</button>
             <div class="login-links">
               <button class="btn-sec" onclick="App.ir('recuperar_senha')">Esqueci minha senha</button>
               <button class="btn-sec" onclick="App.ir('cadastro')">Cadastrar-se</button>
@@ -91,6 +91,10 @@
                   <p class="tela-titulo">Criar conta</p>
                   <p class="tela-sub">Preencha os dados abaixo</p>
                 </div>
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-nome">Nome completo</label>
+                <input type="text" id="cad-nome" placeholder="Seu nome" autocomplete="name" />
               </div>
               <div class="campo-grupo">
                 <label for="cad-email">E-mail</label>
@@ -109,7 +113,7 @@
                 <label for="cad-confirmar">Confirmar senha</label>
                 <input type="password" id="cad-confirmar" placeholder="Repita a senha" autocomplete="new-password" />
               </div>
-              <button type="button" onclick="App.ir('login')">Criar conta</button>
+              <button type="button" onclick="App.cadastrarUsuario()">Criar conta</button>
             </div>
           </section>
 
@@ -162,14 +166,14 @@
                 <p>Olá, Gabriel Scatolino!</p>
               </div>
 
-              <div style="margin: 40px 0; text-align: center;">
+              <div class="card" style="margin: 40px 0; text-align: center;">
                 <p style="font-size: 1.1rem; color: #555;">Cadastre um novo concurso no botão abaixo</p>
-              </div>
 
-              <div class="btn-center">
-                <button type="button" onclick="App.ir('cadastrar_concurso')">Cadastrar Concurso</button>
+
+                <div class="btn-center">
+                  <button type="button" onclick="App.ir('cadastrar_concurso')">Cadastrar Concurso</button>
+                </div>
               </div>
-            </div>
           </section>
 
           <!-- ══ TELA: CADASTRAR CONCURSO ══ -->
@@ -310,82 +314,102 @@
             </div>
           </section>
 
-          <!-- ══ TELA: CONFIGURAÇÕES ══ -->
-          <section id="tela_configuracoes" class="tela tem-nav">
+          <!-- ══ TELA: PERFIL ══ -->
+          <section id="tela_perfil" class="tela tem-nav">
             <div class="tela-inner">
               <header class="header-PERFIL">
                 <div class="avatar-container">
                   <span class="avatar-circulo" aria-label="Foto de Perfil do Usuário">Foto Usuário</span>
-                  <button class="editar-btn" type="button" aria-label="Alterar Foto de Perfil">Alterar Foto</button>
+
                 </div>
                 <div class="info-usuario">
                   <h1 class="nome-usuario">Gabriel Scatolino</h1>
                   <p class="email-usuario">gabrielscatolino@gmail.com</p>
                 </div>
-                <button class="editar-perfil" type="button" onclick="App.ir('perfil')">Editar Perfil</button>
+                <button class="editar-perfil" type="button" onclick="App.ir('edicao')">Editar Perfil</button>
               </header>
+              <div class="card">
+                <h2>Sobre</h2>
+                <p>
+                  Estudante focado em concursos públicos na área administrativa.
+                  Buscando conexão com outros candidatos para troca de experiências.
+
+                </p>
+              </div>
               <section class="card-config">
-                <h2 class="card-titulo">Configurações de Conta</h2>
                 <ul class="lista-config">
                   <li class="item-config">
-                    <a href="#" onclick="App.ir('recuperar_senha'); return false;" class="link-config">
-                      <span class="link-text">Alterar Senha</span>
+                    <a href="#" onclick="App.ir('configuracoes'); return false;" class="link-config">
+                      <span class="link-text">Configurações</span>
                     </a>
                   </li>
                 </ul>
               </section>
-              <section class="card-config">
-                <h2 class="card-titulo">Atividade</h2>
-                <ul class="lista-config">
-                  <li class="item-config">
-                    <a href="#" class="link-config"><span class="link-text">Histórico de Atividade</span></a>
-                  </li>
-                </ul>
-              </section>
-              <section class="card-config">
-                <h2 class="card-titulo">Outras Opções</h2>
-                <ul class="lista-config">
-                  <li class="item-config">
-                    <a href="#" class="link-config"><span class="link-text">Notificações</span></a>
-                  </li>
-                  <li class="item-config">
-                    <a href="#" class="link-config"><span class="link-text">Ajuda & Suporte</span></a>
-                  </li>
-                </ul>
-              </section>
+
+
+            </div>
+          </section>
+
+          <!-- ══ TELA: CONFIGURAÇÃO ══ -->
+          <section id="tela_configuracoes" class="tela tem-nav">
+            <div class="tela-inner">
+
+              <div class="card">
+                <section class="card-config">
+                  <h2 class="card-titulo">Atividade</h2>
+                  <ul class="lista-config">
+                    <li class="item-config">
+                      <a href="#" class="link-config"><span class="link-text">Histórico de Atividade</span></a>
+                    </li>
+                  </ul>
+                </section>
+                <section class="card-config">
+                  <h2 class="card-titulo">Outras Opções</h2>
+                  <ul class="lista-config">
+                    <li class="item-config">
+                      <a href="#" class="link-config"><span class="link-text">Notificações</span></a>
+                    </li>
+                    <li class="item-config">
+                      <a href="#" class="link-config"><span class="link-text">Ajuda & Suporte</span></a>
+                    </li>
+                  </ul>
+                </section>
+              </div>
               <section class="card-config">
                 <ul class="lista-config">
                   <li class="item-config">
                     <button type="button" class="logout-btn" onclick="App.logout()">
                       <span class="link-text">Sair</span>
                     </button>
+                    <button type="button" class="logout-btn" onclick="App.excluirUsuario(App.getUsuarioLogado())">
+                      <span class="link-text">Excluir conta</span>
                   </li>
                 </ul>
               </section>
+
             </div>
           </section>
 
-          <!-- ══ TELA: PERFIL ══ -->
-          <section id="tela_perfil" class="tela tem-nav">
+          <!-- ══ TELA: EDIÇÃO ══ -->
+          <section id="tela_edicao" class="tela tem-nav">
             <div class="tela-inner">
               <div class="tela-header-bloco">
                 <h1>Perfil</h1>
                 <p>Suas informações</p>
               </div>
               <div class="card">
-                <p><strong>Nome:</strong> Gabriel Scatolino <button type="button" class="btn-sm btn-sec">Editar</button>
+                <p><strong>Nome:</strong><input type="text" id="editar_nome">
                 </p>
-                <p><strong>Idade:</strong> 21 anos <button type="button" class="btn-sm btn-sec">Editar</button></p>
-                <p><strong>Concursos realizados:</strong> 8 <button type="button" class="btn-sm btn-sec">Editar</button>
+                <p><strong>E-mail:</strong><input type="text" id="editar_email"></p>
+                <p><strong>Senha:</strong> <input type="text" id="editar_senha">
                 </p>
-                <p><strong>Concursos:</strong> 15</p>
+                <button class="editar-btn" type="button" aria-label="Alterar Foto de Perfil">Alterar Foto</button>
+
               </div>
               <div class="card">
                 <h2>Sobre</h2>
                 <p>
-                  Estudante focado em concursos públicos na área administrativa.
-                  Buscando conexão com outros candidatos para troca de experiências.
-                  <button type="button" class="btn-sm btn-sec">Editar</button>
+                <p><strong>Sobre:</strong><input type="text" id="editar_descricao">
                 </p>
               </div>
               <div class="card">
@@ -406,11 +430,10 @@
                 </div>
               </div>
               <div class="btn-center">
-                <button class="editar-btn" type="button" onclick="App.ir('configuracoes')">Salvar alterações</button>
+                <button class="editar-btn" type="button" onclick="App.salvarEdicaoPerfil()">Salvar alterações</button>
               </div>
             </div>
           </section>
-
         </div><!-- /app-viewport -->
 
         <!-- ══ BOTTOM NAV (fixo dentro do phone-screen) ══ -->
@@ -420,7 +443,7 @@
               <li><button id="nav-home" onclick="App.ir('home')">Home</button></li>
               <li><button id="nav-conexoes" onclick="App.ir('concursos')">Concursos</button></li>
               <li><button id="nav-buscar" onclick="App.ir('buscar')">Buscar</button></li>
-              <li><button id="nav-configuracoes" onclick="App.ir('configuracoes')">Config.</button></li>
+              <li><button id="nav-configuracoes" onclick="App.ir('perfil')">Perfil</button></li>
             </ul>
           </nav>
           <div class="home-indicator"></div>

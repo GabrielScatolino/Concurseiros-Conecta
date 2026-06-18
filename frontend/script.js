@@ -2,6 +2,20 @@ const App = (() => {
 
   const historico = [];
 
+  const USUARIO_LOGADO_KEY = 'usuario_logado_id';
+
+  function setUsuarioLogado(id) {
+    localStorage.setItem(USUARIO_LOGADO_KEY, id);
+  }
+
+  function getUsuarioLogado() {
+    return localStorage.getItem(USUARIO_LOGADO_KEY);
+  }
+
+  function limparUsuarioLogado() {
+    localStorage.removeItem(USUARIO_LOGADO_KEY);
+  }
+
   const TELAS = {
     login: 'tela_login',
     cadastro: 'tela_cadastro',
@@ -14,6 +28,7 @@ const App = (() => {
     editar_concurso: 'tela_editar_concurso',
     configuracoes: 'tela_configuracoes',
     perfil: 'tela_perfil',
+    edicao: 'tela_edicao',
   };
 
   const NAV_CONFIG = {
@@ -23,6 +38,7 @@ const App = (() => {
     buscar: 'nav-buscar',
     configuracoes: 'nav-configuracoes',
     perfil: 'nav-configuracoes',
+    edicao: 'nav-configuracoes',
   };
 
   const bottomNav = () => document.getElementById('bottom-nav');
@@ -39,6 +55,11 @@ const App = (() => {
     const telaEl = document.getElementById(idAlvo);
     if (!telaEl) { console.warn(`[App] #${idAlvo} não encontrado`); return; }
     telaEl.classList.add('ativa');
+
+    // Carrega dados do usuário ao entrar nas telas de perfil/edição
+    if (nomeTela === 'perfil' || nomeTela === 'edicao') {
+      carregarDadosUsuario(nomeTela);
+    }
 
     // Gerencia bottom-nav
     const nav = bottomNav();
@@ -69,11 +90,187 @@ const App = (() => {
 
   function logout() {
     if (!confirm('Deseja sair da sua conta?')) return;
+    limparUsuarioLogado();
     historico.length = 0;
     ir('login');
   }
 
   // ── Handlers de formulários ──────────────────────────────────
+  function maskCPF(input) {
+    let v = input.value.replace(/\D/g, '').slice(0, 11);
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    input.value = v;
+  }
+
+  // 1. CADASTRAR Usuário (Create)
+  async function cadastrarUsuario() {
+    const nome = document.getElementById('cad-nome').value.trim();
+    const email = document.getElementById('cad-email').value.trim();
+    const cpf = document.getElementById('cad-cpf').value.replace(/\D/g, '');
+    const senha = document.getElementById('cad-senha').value;
+    const confirmar = document.getElementById('cad-confirmar').value;
+
+    if (!nome || !email || !cpf || !senha || !confirmar) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    if (senha !== confirmar) {
+      alert('As senhas não coincidem.');
+      return;
+    }
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: nome, email, password: senha, cpf }),
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.error || 'Erro ao cadastrar usuário.');
+      }
+
+      alert('Conta criada com sucesso! Faça login para continuar.');
+      ir('login');
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
+
+  // 2. "LOGIN" temporário, baseado em getAllUsers + filtro por e-mail
+  async function login() {
+    const email = document.getElementById('login-email').value.trim();
+    const senha = document.getElementById('login-senha').value;
+
+    if (!email || !senha) {
+      alert('Informe e-mail e senha.');
+      return;
+    }
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/users');
+      const usuarios = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(usuarios.error || 'Erro ao buscar usuários.');
+      }
+
+      const usuarioEncontrado = usuarios.find(u => u.email === email);
+
+      if (!usuarioEncontrado) {
+        alert('E-mail ou senha inválidos.');
+        return;
+      }
+
+      // ⚠️ Sem validação real de senha até existir uma rota de login no back-end
+      setUsuarioLogado(usuarioEncontrado.id_usuario);
+      ir('home');
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
+
+  // 3. CARREGAR dados do usuário logado (usado em perfil e edição)
+  async function carregarDadosUsuario(nomeTela) {
+    const id = getUsuarioLogado();
+    if (!id) return;
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/users/' + id);
+      const usuario = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(usuario.error || 'Erro ao carregar dados do usuário.');
+      }
+
+      if (nomeTela === 'perfil') {
+        const nomeEl = document.querySelector('#tela_perfil .nome-usuario');
+        const emailEl = document.querySelector('#tela_perfil .email-usuario');
+        if (nomeEl) nomeEl.textContent = usuario.nome;
+        if (emailEl) emailEl.textContent = usuario.email;
+      }
+
+      if (nomeTela === 'edicao') {
+        const nomeInput = document.getElementById('editar_nome');
+        const emailInput = document.getElementById('editar_email');
+        if (nomeInput) nomeInput.value = usuario.nome;
+        if (emailInput) emailInput.value = usuario.email;
+        // senha não é retornada pelo back-end por segurança; campo fica em branco
+      }
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
+
+  // 4. ATUALIZAR Usuário (Update)
+  async function salvarEdicaoPerfil() {
+    const id = getUsuarioLogado();
+    if (!id) {
+      alert('Nenhum usuário logado.');
+      return;
+    }
+
+    const nome = document.getElementById('editar_nome').value.trim();
+    const email = document.getElementById('editar_email').value.trim();
+    const senha = document.getElementById('editar_senha').value;
+
+    if (!nome || !email) {
+      alert('Nome e e-mail são obrigatórios.');
+      return;
+    }
+
+    const corpo = { name: nome, email };
+    if (senha) corpo.password = senha;
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/users/' + id, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(corpo),
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.error || 'Erro ao atualizar perfil.');
+      }
+
+      alert('Perfil atualizado com sucesso!');
+      ir('perfil');
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
+
+  // 5. EXCLUIR Usuário (Delete) — ainda sem botão na tela, função pronta pra usar
+  async function excluirUsuario(id) {
+    if (!confirm('Tem certeza que deseja excluir sua conta? Essa ação não pode ser desfeita.')) return;
+
+    try {
+      const resposta = await fetch('http://localhost:3000/api/users/' + id, {
+        method: 'DELETE',
+      });
+
+      const dados = await resposta.json();
+
+      if (!resposta.ok) {
+        throw new Error(dados.error || 'Erro ao excluir usuário.');
+      }
+
+      alert('Conta excluída com sucesso!');
+      limparUsuarioLogado();
+      historico.length = 0;
+      ir('login');
+    } catch (erro) {
+      alert(erro.message);
+    }
+  }
+
 
   async function cadastrarConcurso(e) {
     e.preventDefault();
@@ -290,6 +487,9 @@ const App = (() => {
     });
   });
 
-  return { ir, voltar, logout, cadastrarConcurso, buscar, verTodosConcursos, buscarConcursoPorId, excluirConcurso, salvarEdicao };
-
+ return {
+  ir, voltar, logout,
+  cadastrarConcurso, buscar, verTodosConcursos, buscarConcursoPorId, excluirConcurso, salvarEdicao,
+  login, cadastrarUsuario, salvarEdicaoPerfil, excluirUsuario, maskCPF, getUsuarioLogado
+};
 })();
