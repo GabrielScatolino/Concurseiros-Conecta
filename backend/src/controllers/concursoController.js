@@ -2,13 +2,11 @@ import prisma from '../config/prisma.js';
 
 const parseId = (value) => {
   const id = Number(value);
-
   if (!Number.isInteger(id) || id <= 0) {
     const error = new Error('ID inválido');
     error.statusCode = 400;
     throw error;
   }
-
   return id;
 };
 
@@ -25,18 +23,6 @@ const parseDate = (value) => {
 
   return date;
 };
-
-const buildConcursoData = ({
-  cargo,
-  local,
-  data,
-  url_edital
-}) => ({
-  cargo,
-  local: local ?? null,
-  data: parseDate(data),
-  url_edital: url_edital ?? null,
-});
 
 export const createConcurso = async (req, res) => {
   try {
@@ -62,16 +48,15 @@ export const createConcurso = async (req, res) => {
       return res.status(400).json({ error: 'Banca informada não existe.' });
     }
 
+    const dados = {};
+    if (cargo !== undefined) dados.cargo = cargo;
+    if (local !== undefined) dados.local = local;
+    if (data !== undefined) dados.data = parseDate(data);
+    if (url_edital !== undefined) dados.url_edital = url_edital;
+    dados.id_banca = bancaId;
+
     const concurso = await prisma.concurso.create({
-      data: {
-        ...buildConcursoData({
-          cargo,
-          local,
-          data,
-          url_edital,
-        }),
-        id_banca: bancaId,
-      },
+      data: dados,
       select: {
         id_concurso: true,
         id_banca: true,
@@ -174,12 +159,12 @@ export const updateConcurso = async (req, res) => {
       id_banca
     } = req.body;
 
-    const dataToUpdate = {};
+    const dadosUpdate = {};
 
-    if (cargo !== undefined) dataToUpdate.cargo = cargo;
-    if (local !== undefined) dataToUpdate.local = local;
-    if (data !== undefined) dataToUpdate.data = parseDate(data);
-    if (url_edital !== undefined) dataToUpdate.url_edital = url_edital;
+    if (cargo !== undefined) dadosUpdate.cargo = cargo;
+    if (local !== undefined) dadosUpdate.local = local;
+    if (data !== undefined) dadosUpdate.data = parseDate(data);
+    if (url_edital !== undefined) dadosUpdate.url_edital = url_edital;
 
     if (id_banca !== undefined) {
       const bancaId = parseId(id_banca);
@@ -192,16 +177,16 @@ export const updateConcurso = async (req, res) => {
         return res.status(400).json({ error: 'Banca informada não existe.' });
       }
 
-      dataToUpdate.id_banca = bancaId;
+      dadosUpdate.id_banca = bancaId;
     }
 
-    if (Object.keys(dataToUpdate).length === 0) {
+    if (Object.keys(dadosUpdate).length === 0) {
       return res.status(400).json({ error: 'Nenhum campo foi informado para atualização.' });
     }
 
     const concurso = await prisma.concurso.update({
       where: { id_concurso },
-      data: dataToUpdate,
+      data: dadosUpdate,
       select: {
         id_concurso: true,
         id_banca: true,
